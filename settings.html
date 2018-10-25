@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Execution Services-Omni Point</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+    /* Navbar Header */
+    .navbar
+    {
+      border-radius: 0px;
+    }
+
+    .navbar-inverse
+    {
+      background-color: white;
+      border-color: #3e3e3e;
+    }
+
+    .navbar-brand
+    {
+      padding: 0px;
+    }
+    .navbar-brand>img
+    {
+      height: 100%;
+      width: auto;
+    }
+
+    .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover
+    {
+      color: black;
+      background-color: lightgray;
+    }
+    .navbar-inverse .navbar-nav>li>a
+    {
+      color: black;
+    }
+    .navbar-inverse .navbar-nav>li>a:hover
+    {
+      color: black;
+    }
+
+
+    /*  bhoechie tab */
+    div.bhoechie-tab-container
+    {
+      z-index: 10;
+      background-color: #ffffff;
+      padding: 0 !important;
+      border-radius: 4px;
+      -moz-border-radius: 4px;
+      border:1px solid #ddd;
+      margin-top: 20px;
+      margin-left: 50px;
+      -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      background-clip: padding-box;
+      opacity: 0.97;
+      filter: alpha(opacity=97);
+    }
+    div.bhoechie-tab-menu
+    {
+      padding-right: 0;
+      padding-left: 0;
+      padding-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group
+    {
+      margin-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a
+    {
+      margin-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a .glyphicon,
+    div.bhoechie-tab-menu div.list-group>a .fa
+    {
+      color: #337ab7;
+    }
+    div.bhoechie-tab-menu div.list-group>a:first-child
+    {
+      border-top-right-radius: 0;
+      -moz-border-top-right-radius: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a:last-child
+    {
+      border-bottom-right-radius: 0;
+      -moz-border-bottom-right-radius: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a.active,
+    div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+    div.bhoechie-tab-menu div.list-group>a.active .fa
+    {
+      background-color: #337ab7;
+      background-image: #337ab7;
+      color: #ffffff;
+    }
+    div.bhoechie-tab-menu div.list-group>a.active:after
+    {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      margin-top: -13px;
+      border-left: 0;
+      border-bottom: 13px solid transparent;
+      border-top: 13px solid transparent;
+      border-left: 10px solid #337ab7;
+    }
+
+    div.bhoechie-tab-content
+    {
+      background-color: #ffffff;
+      /* border: 1px solid #eeeeee; */
+      padding-left: 20px;
+      padding-top: 10px;
+    }
+
+    div.bhoechie-tab div.bhoechie-tab-content:not(.active)
+    {
+      display: none;
+    }
+
+    .nav-list>li>a:hover
+     {
+          color: #337ab7;
+     }
+
+    .add
+    {
+      margin-left:49%;
+      width:65%;
+    }
+    .reset
+    {
+      width:65%;
+      margin-left:-60px;
+    }
+    .active
+    {
+        background-color:red;
+    }
+
+    .glyphicon
+    {
+        color: #337ab7;
+    }
+    .transfer
+    {
+      margin-left:64%;
+      width:40%;
+    }
+    .transfer_reset
+    {
+      margin-right:204px;
+      width:40%;
+    }
+    .remove_sub
+    {
+        display:none;
+    }
+
+    /* Toggle Button */
+
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #337ab7;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #337ab7;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  left:-5px;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+th
+{
+    text-align:center;
+}
+
+</style>
+<body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html"><img src="omnipoint.JPG" alt="Omnipoint" draggable="false"></a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class=""><a href="index.html">Home</a></li>
+            <li class=""><a href="trade.html">Trade</a></li>
+            <li class=""><a href="account.html">Accounts</a></li>
+            <li class="active"><a href="settings.html">Settings</a></li>
+            <li class=""><a href="#">Help</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i style="font-size:18px" class="fa fa-user" aria-hidden="true"></i></a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container" style="width:1400px">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+                  <div class="list-group main_tab" id="sidenav01">
+                      <a href="#" class="list-group-item active text-center" id="balance_main">
+                        <h4 class="glyphicon glyphicon-wrench"></h4><br/>Risk Settings
+                      </a>
+                      <a href="#" class="list-group-item text-center" id="deposit_main">
+                        <h4 class="glyphicon glyphicon-briefcase"></h4><br/>Market Centers
+                      </a>
+                  </div>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+                    <!-- Balance section -->
+                    <div class="bhoechie-tab-content active">
+                        <div class="col-md-12" style="background-color:white;margin-bottom:10px">
+                            <div class="well well-sm" style="height:700px;">
+                                <div class="col-md-12" id="risk">
+                                    <p style="text-align:left;"><b>Limits :</b></p>
+                                </div>
+                                <div class="col-md-12" style="background-color:white;border:1px solid gray;width:96%;margin-left: 15px;display:none" id="risk_main_account_table">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:left">Limits</th>
+                                                <th style="text-align:left">Used ($)</th>
+                                                <th style="text-align:left">Available ($)</th>
+                                                <th style="text-align:left">Max ($)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Buying Power</td>
+                                                <td>20.50</td>
+                                                <td>79.50</td>
+                                                <td>100</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Trading Limit</td>
+                                                <td>60.50</td>
+                                                <td>39.50</td>
+                                                <td>100</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div><br><br>
+                                <div class="col-md-12">
+                                    <div class="form-group" style="margin-top:25px">
+                                      <span style="white-space: nowrap">
+                                        <div class="col-md-3" style="margin-left:-15px;margin-top:8px">
+                                          <label style="margin-top:7px:">View Risk Settings for :</label>
+                                        </div>
+                                        <div class="col-md-4" style="margin-left:-90px">
+                                          <select class="form-control" id="select_risk_account" style="width:60%">
+                                              <option value="" disabled selected>--Select Account--</option>
+                                              <option value="Main" selected>Main</option>
+                                              <option value="Sub_Account_1">Sub Account 1</option>
+                                              <option value="Sub_Account_2">Sub Account 2</option>
+                                              <option value="Sub_Account_3">Sub Account 3</option>
+                                              <option value="Sub_Account_4">Sub Account 4</option>
+                                          </select>
+                                        </div>
+                                      </span>
+                                    </div>
+                                </div>
+                                <br><br><br>
+                                <div class="col-md-12" style="background-color:white;border:1px solid gray;width:96%;margin-left:15px;margin-top:20px;" id="ri">
+                                    <div class="overflow-x:auto">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr style="text-align:center">
+                                                <th style="width:14%;text-align:left">Order Checks</th>
+                                                <th>BTC</th>
+                                                <th>LTC</th>
+                                                <th>ETH</th>
+                                                <th>BCH</th>
+                                                <th>XRP</th>
+                                                <th>XMR</th>
+                                                <th>ZEC</th>
+                                                <th>DASH</th>
+                                                <th>NEO</th>
+                                                <th>EOS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Max Order Size</td>
+                                                <td><input class="form-control" type="text" value="10.12"></td>
+                                                <td><input class="form-control" type="text" value="22.10"></td>
+                                                <td><input class="form-control" type="text" value="44.10"></td>
+                                                <td><input class="form-control" type="text" value="10.90"></td>
+                                                <td><input class="form-control" type="text" value="10.90"></td>
+                                                <td><input class="form-control" type="text" value="10.12"></td>
+                                                <td><input class="form-control" type="text" value="22.10"></td>
+                                                <td><input class="form-control" type="text" value="44.10"></td>
+                                                <td><input class="form-control" type="text" value="10.90"></td>
+                                                <td><input class="form-control" type="text" value="10.90"></td>
+                                            </tr>
+
+                                            <tr>
+                                               <td>Max Dollar Value</td>
+                                                <td><input class="form-control" type="text" value="50"></td>
+                                                <td><input class="form-control" type="text" value="40"></td>
+                                                <td><input class="form-control" type="text" value="60"></td>
+                                                <td><input class="form-control" type="text" value="70"></td>
+                                                <td><input class="form-control" type="text" value="10.90"></td>
+                                                <td><input class="form-control" type="text" value="50"></td>
+                                                <td><input class="form-control" type="text" value="40"></td>
+                                                <td><input class="form-control" type="text" value="60"></td>
+                                                <td><input class="form-control" type="text" value="70"></td>
+                                                <td><input class="form-control" type="text" value="10.90"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Max Price Deviation</td>
+                                                <td><input class="form-control" type="text" value="10"></td>
+                                                <td><input class="form-control" type="text" value="30"></td>
+                                                <td><input class="form-control" type="text" value="50"></td>
+                                                <td><input class="form-control" type="text" value="10"></td>
+                                                <td><input class="form-control" type="text" value="10.90"></td>
+                                                <td><input class="form-control" type="text" value="10"></td>
+                                                <td><input class="form-control" type="text" value="30"></td>
+                                                <td><input class="form-control" type="text" value="50"></td>
+                                                <td><input class="form-control" type="text" value="10"></td>
+                                                <td><input class="form-control" type="text" value="10.90"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="display:none" id="risk_sub_account_title">
+                                    <p style="text-align:left;"><b>Risk Settings for Sub Account :</b></p>
+                                </div>
+                                <div class="col-md-12" style="background-color:white;border:1px solid gray;width:96%;margin-left: 15px;display:none" id="risk_sub_account_table">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Buying Power Used ($)</th>
+                                                <th>Trading Limit Used ($)</th>
+                                                <th>Maximum Order Size</th>
+                                                <th>Maximum Dollar Value ($)</th>
+                                                <th>Maximum Price Deviation (%)</th>
+                                                <th>Maximum Buying Power ($)</th>
+                                                <th>Maximum Trading Limit ($)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>20.05</td>
+                                                <td>60.50</td>
+                                                <td>30</td>
+                                                <td>50.70</td>
+                                                <td>60</td>
+                                                <td>44.09</td>
+                                                <td>30</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>20.05</td>
+                                                <td>60.50</td>
+                                                <td>30</td>
+                                                <td>50.70</td>
+                                                <td>60</td>
+                                                <td>44.09</td>
+                                                <td>30</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>20.05</td>
+                                                <td>60.50</td>
+                                                <td>30</td>
+                                                <td>50.70</td>
+                                                <td>60</td>
+                                                <td>44.09</td>
+                                                <td>30</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>20.05</td>
+                                                <td>60.50</td>
+                                                <td>30</td>
+                                                <td>50.70</td>
+                                                <td>60</td>
+                                                <td>44.09</td>
+                                                <td>30</td>
+                                            </tr>
+                                            <tr>
+                                                <td>20.05</td>
+                                                <td>60.50</td>
+                                                <td>30</td>
+                                                <td>50.70</td>
+                                                <td>60</td>
+                                                <td>44.09</td>
+                                                <td>30</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <div class="col-md-12" style="margin-top:20px" id="risk_setting_modify">
+                                      <button class="btn btn-primary risk_modify_setting" onclick="risk_modify_settings()" style="margin-left:450px;">Modify Settings</button>
+                                </div>
+                                <div class="col-md-12" style="display:none" id="risk_option_buttons">
+                                    <button class="btn btn-primary enable_all" style="width:15%;margin-left:375px" onclick="risk_setting_save()">Save</button>
+                                    <button class="btn btn-primary disable_all" style="width:15%" onclick="reset()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bhoechie-tab-content">
+                        <div class="col-md-12" style="background-color:white;margin-bottom:10px">
+                            <div class="well well-sm" style="height:540px;">
+                                <div class="form-group" style="margin-top:25px">
+                                  <span style="white-space: nowrap">
+                                    <div class="col-md-3" style="text-align:left;margin-top:8px">
+                                      <label style="margin-top:7px:">View Market Center Settings for :</label>
+                                    </div>
+                                    <div class="col-md-4" style="margin-left:-25px">
+                                      <select class="form-control" id="select_account" style="width:60%">
+                                          <option value="" disabled selected>--Select Account--</option>
+                                          <option value="Main" selected>Main</option>
+                                          <option value="Sub_Account_1">Sub Account 1</option>
+                                          <option value="Sub_Account_2">Sub Account 2</option>
+                                          <option value="Sub_Account_3">Sub Account 3</option>
+                                          <option value="Sub_Account_4">Sub Account 4</option>
+                                      </select>
+                                    </div>
+                                  </span>
+                                </div><br><br><br><br>
+                                <div class="col-md-12" style="display:none" id="sub_account_title">
+                                    <p style="text-align:left;"><b>Tradable Market Centers (Sub Account):</b></p>
+                                </div>
+                                <div class="col-md-12" style="background-color:white;border:1px solid gray;width:96%;margin-left: 15px;display:none" id="sub_account_table">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:left">Exchange</th>
+                                                <th style="text-align:left">Bitcoin (BTC)</th>
+                                                <th style="text-align:left">Litecoin (LTC)</th>
+                                                <th style="text-align:left">Ethereum (ETH)</th>
+                                                <th style="text-align:left">Bitcoin Cash (BCH)</th>
+                                                <th style="text-align:left">Ripple (XRP)</th>
+                                                <th style="text-align:left">Monero (XMR)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>BINANCE</td>
+                                                <td><label class="switch"><input type="checkbox" class="disable"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="disable"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="disable"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="disable"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="disable"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="disable"><span class="slider round"></span></label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>HITBTC</td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>OKEX</td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>BITHUMB</td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>HUOBI</td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12" style="display:none;" id="main_account_title">
+                                    <p style="text-align:left;"><b>Tradable Market Centers (Main Account):</b></p>
+                                </div>
+                                <div class="col-md-12" style="background-color:white;border:1px solid gray;width:96%;margin-left: 15px;display:none" id="main_account_table">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:left">Exchange</th>
+                                                <th style="text-align:left">Bitcoin (BTC)</th>
+                                                <th style="text-align:left">Litecoin (LTC)</th>
+                                                <th style="text-align:left">Ethereum (ETH)</th>
+                                                <th style="text-align:left">Bitcoin Cash (BCH)</th>
+                                                <th style="text-align:left">Ripple (XRP)</th>
+                                                <th style="text-align:left">Monero (XMR)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>BINANCE</td>
+                                                <td><label class="switch"><input type="checkbox" class="endis_able"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="endis_able"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="endis_able"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="endis_able"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="endis_able"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox" class="endis_able"><span class="slider round"></span></label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>HITBTC</td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>OKEX</td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>BITHUMB</td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>HUOBI</td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12" style="margin-top:20px">
+                                      <button class="btn btn-primary modify_setting" onclick="market_modify_settings()" style="margin-left:435px;">Modify Settings</button>
+                                </div>
+                                <div class="col-md-12" style="display:none" id="option_buttons">
+                                    <button class="btn btn-primary enable_all" style="margin-left:185px;width:15%" onclick="enable_all()">Enable All</button>
+                                    <button class="btn btn-primary disable_all" style="width:15%" onclick="disable_all()">Disable All</button>
+                                    <button class="btn btn-primary enable_all" style="width:15%" onclick="market_center_save()">Save</button>
+                                    <button class="btn btn-primary disable_all" style="width:15%" onclick="market_center_reset()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+</body>
+<script>
+  $(document).ready(function()
+  {
+    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        $("#add_subaccount").hide();
+        $("#manage_subaccount").hide();
+    });
+
+    $("#main_account_title").show();
+    $("#main_account_table").show();
+    $("#risk_main_account_title").show();
+    $("#risk_main_account_table").show();
+    $(".modify_setting").show();
+    $(".risk_modify_setting").show();
+    $('input[type=checkbox]').attr('disabled', true);
+    $('input[type=text]').attr('disabled', true);
+
+    $("#select_account").change(function()
+    {
+      var select_type = $("#select_account option:selected").val();
+
+      if(select_type == 'Main')
+      {
+           $('input[type=checkbox]').attr('disabled', true);
+           $("#main_account_title").show();
+           $("#main_account_table").show();
+           $("#setting_buttons").show();
+           $("#sub_account_table").hide();
+           $("#sub_account_title").hide();
+           $("#sub_account_table").hide();
+           $(".modify_setting").show();
+           $("#option_buttons").hide();
+      }
+      else
+      {
+           $('input[type=checkbox]').attr('disabled', true);
+           $("#main_account_title").hide();
+           $("#main_account_table").hide();
+           $("#sub_account_title").show();
+           $("#sub_account_table").show();
+           $(".modify_setting").show();
+           $("#option_buttons").hide();
+      }
+    });
+
+    $("#select_risk_account").change(function()
+    {
+      var select_type = $("#select_risk_account option:selected").val();
+
+      if(select_type == 'Main')
+      {
+           $('input[type=checkbox]').attr('disabled', true);
+           $("#risk_main_account_title").show();
+           $("#risk_main_account_table").show();
+           $("#risk_setting_buttons").show();
+           $("#risk_sub_account_table").hide();
+           $("#risk_sub_account_title").hide();
+           $("#risk_sub_account_table").hide();
+           $(".risk_modify_setting").show();
+           $("#risk_option_buttons").hide();
+      }
+      else
+      {
+           $('input[type=checkbox]').attr('disabled', true);
+           $(".risk_modify_setting").show();
+           $("#risk_option_buttons").hide();
+      }
+    });
+
+});
+
+function enable_all()
+{
+    $('input[type=checkbox]').attr('checked', true);
+
+}
+function disable_all()
+{
+    if($('input[type=checkbox]').attr("checked"))
+    {
+        $('input[type=checkbox]').attr('checked', false);
+    }
+
+    $('input[type=checkbox]').attr('checked', false);
+}
+function market_modify_settings()
+{
+    $(".modify_setting").hide();
+    $("#option_buttons").show();
+    $('input[type=checkbox]').attr('disabled', false);
+}
+function risk_setting_save()
+{
+    alert("Do you want to save your changes?");
+    $("#risk_option_buttons").css('display','none');
+    $(".risk_modify_setting").show();
+    $('input[type=text]').attr('disabled',true);
+
+}
+function reset()
+{
+    alert("Do you want to reset your changes?");
+    $("#risk_option_buttons").css('display','none');
+    $(".risk_modify_setting").show();
+    $('input[type=text]').attr('disabled',true);
+}
+function risk_modify_settings()
+{
+    $(".risk_modify_setting").hide();
+    $("#risk_option_buttons").show();
+    $('input[type=checkbox]').attr('disabled', false);
+    $('input[type=text]').attr('disabled', false);
+}
+
+function market_center_save()
+{
+    alert("Do you want to save your changes?");
+    $(".modify_setting").show();
+    $("#option_buttons").hide();
+    $('input[type=checkbox]').attr('disabled', true);
+}
+
+function market_center_reset()
+{
+    alert("Do you want to reset your changes?");
+    $(".modify_setting").show();
+    $("#option_buttons").hide();
+    $('input[type=checkbox]').attr('disabled', true);
+}
+
+</script>
+</html>

@@ -1,0 +1,489 @@
+<html lang="en">
+  <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Execution Services-Omni Point</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <style>
+    .well-sm
+    {
+        padding: 9px;
+        border-radius: 3px;
+        height: auto;
+    }
+
+    .panel-body
+    {
+      height: auto;
+    }
+    .panel.with-nav-tabs .panel-heading
+    {
+        padding: 5px 5px 0 5px;
+    }
+    .panel.with-nav-tabs .nav-tabs
+    {
+        border-bottom: none;
+    }
+    .panel.with-nav-tabs .nav-justified
+    {
+        margin-bottom: -1px;
+    }
+
+
+    .with-nav-tabs.panel-primary .nav-tabs > li > a,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+    }
+
+    .with-nav-tabs.panel-primary .nav-tabs > .open > a,
+    .with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+    background-color: #3071a9;
+    border-color: transparent;
+    }
+
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+    color: #428bca;
+    background-color: #fff;
+    border-color: #428bca;
+    border-bottom-color: transparent;
+    }
+
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+        background-color: #428bca;
+        border-color: #3071a9;
+    }
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+        color: #fff;
+    }
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+        background-color: #3071a9;
+    }
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+        background-color: #4a9fe9;
+    }
+
+
+    .stylish-input-group .input-group-addon{
+        background: white !important;
+    }
+    .stylish-input-group .form-control{
+        border-right:0;
+        box-shadow:0 0 0;
+        border-color:#ccc;
+    }
+    .stylish-input-group button{
+        border:0;
+        background:transparent;
+    }
+
+    #imaginary_container
+    {
+        margin-right: 93px;
+        margin-left: 220px;
+    }
+    .fa-money:before
+    {
+        content: "\f0d6";
+        color: #337ab7;
+    }
+
+    .navbar
+    {
+      border-radius: 0px;
+    }
+
+    .navbar-inverse
+    {
+      background-color: white;
+      border-color: #3e3e3e;
+    }
+
+    .navbar-brand
+    {
+      padding: 0px;
+    }
+    .navbar-brand>img
+    {
+      height: 100%;
+      width: auto;
+    }
+
+    .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover
+    {
+      color: black;
+      background-color: lightgray;
+    }
+    .navbar-inverse .navbar-nav>li>a
+    {
+      color: black;
+    }
+    .navbar-inverse .navbar-nav>li>a:hover
+    {
+      color: black;
+    }
+
+    /* Toggle Button */
+
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #337ab7;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #337ab7;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  left:-5px;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+  </style>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="home.html">
+            <img src="omnipoint.JPG" alt="Omnipoint" draggable="false">
+          </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class=""><a href="home.html">Home</a></li>
+          <li class=""><a href="trade.html">Trade</a></li>
+          <li class=""><a href="account.html">Account</a></li>
+          <li class="active"><a href="#">Settings</a></li>
+          <li class=""><a href="#">Help</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i style="font-size:18px" class="fa fa-user" aria-hidden="true"></i></a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Page Content -->
+    <div class="container"><br><br>
+        <div class="col-md-12">
+            <div class="col-md-1"></div>
+             <div class="col-md-10">
+                 <div class="panel with-nav-tabs panel-primary">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs nav-justified">
+                            <li class=""><a href="#tab1primary" data-toggle="tab"><b style="font-size:17px">Market Centers</b></a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1primary">
+
+                                <div class="col-md-12" style="background-color:white;margin-bottom:10px">
+                                    <div class="well well-sm" style="height:540px;">
+                                        <div class="form-group" style="margin-top:25px">
+                                          <span style="white-space: nowrap">
+                                            <div class="col-md-4" style="text-align:left">
+                                              <label style="margin-top:7px:">Select Account</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                              <select class="form-control" id="select_account">
+                                                  <option value="">Select Account</option>
+                                                  <option value="Main" selected>Main</option>
+                                                  <option value="Sub_Account_1">Sub Account 1</option>
+                                                  <option value="Sub_Account_2">Sub Account 2</option>
+                                                  <option value="Sub_Account_3">Sub Account 3</option>
+                                                  <option value="Sub_Account_4">Sub Account 4</option>
+                                              </select>
+                                            </div>
+                                          </span>
+                                        </div><br><br><br><br><br>
+                                        <div class="col-md-12" style="display:none;color:#337ab7" id="sub_account_title">
+                                            <p style="text-align:left;"><b>Tradable Market centers (Sub Account):</b></p>
+                                        </div>
+                                        <div class="col-md-12" style="background-color:white;border:1px solid gray;width:96%;margin-left: 15px;display:none" id="sub_account_table">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Exchange</th>
+                                                        <th>BTC</th>
+                                                        <th>LTC</th>
+                                                        <th>ETH</th>
+                                                        <th>BCH</th>
+                                                        <th>XRP</th>
+                                                        <th>USDT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>BINANCE</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>HITBTC</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>OKEX</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>BITHUMB</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>HUOBI</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-12" style="display:none;color:#337ab7" id="main_account_title">
+                                            <p style="text-align:left;"><b>Tradable Market centers (Main Account):</b></p>
+                                        </div>
+                                        <div class="col-md-12" style="background-color:white;border:1px solid gray;width:96%;margin-left: 15px;display:none" id="main_account_table">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Exchange</th>
+                                                        <th>BTC</th>
+                                                        <th>LTC</th>
+                                                        <th>ETH</th>
+                                                        <th>BCH</th>
+                                                        <th>XRP</th>
+                                                        <th>USDT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>BINANCE</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>HITBTC</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>OKEX</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>BITHUMB</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>HUOBI</td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                        <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:20px;display:none" id="setting_buttons">
+                                            <div class="col-md-5">
+                                              <button class="btn btn-primary modify_setting" style="margin-left:189px" onclick="buy_submit()">Modify Settings</button>
+                                            </div>
+                                            <div class="col-md-2">
+                                              <button class="btn btn-primary enable_all" style="margin-left:12px" onclick="enable_all()">Enable All</button>
+                                            </div>
+                                            <div class="col-md-5">
+                                              <button class="btn btn-primary disable_all" onclick="disable_all()">Disable All</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <!--<footer class="py-5 bg-dark">-->
+      <!--<div class="container">-->
+        <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /.container &ndash;&gt;-->
+    <!--</footer>-->
+
+    <!-- Bootstrap core JavaScript -->
+    <!--<script src="vendor/jquery/jquery.min.js"></script>-->
+    <!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+
+  </body>
+  <script>
+    $(document).ready(function()
+    {
+        $("#main_account_title").show();
+        $("#main_account_table").show();
+        $("#setting_buttons").show();
+
+        $("#select_account").change(function()
+        {
+          var select_type = $("#select_account option:selected").val();
+
+          if(select_type == 'Main')
+          {
+               $("#main_account_title").show();
+               $("#main_account_table").show();
+               $("#setting_buttons").show();
+               $("#sub_account_table").hide();
+               $("#sub_account_title").hide();
+               $("#sub_account_table").hide();
+          }
+          else
+          {
+               $("#main_account_title").hide();
+               $("#main_account_table").hide();
+               $("#sub_account_title").show();
+               $("#sub_account_table").show();
+          }
+
+          console.log(select_type);
+
+        });
+    });
+
+    function enable_all()
+    {
+        $('input[type=checkbox]').attr('checked', true);
+
+    }
+    function disable_all()
+    {
+        $('input[type=checkbox]').attr('checked', false);
+    }
+  </script>
+</html>

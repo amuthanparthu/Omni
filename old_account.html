@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Execution Services-Omni Point</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <style>
+    .well-sm
+    {
+        padding: 9px;
+        border-radius: 3px;
+        height: auto;
+    }
+
+    .panel-body
+    {
+      height: auto;
+    }
+    .panel.with-nav-tabs .panel-heading
+    {
+        padding: 5px 5px 0 5px;
+    }
+    .panel.with-nav-tabs .nav-tabs
+    {
+        border-bottom: none;
+    }
+    .panel.with-nav-tabs .nav-justified
+    {
+        margin-bottom: -1px;
+    }
+    label
+    {
+        color:brown;
+    }
+    .active b
+    {
+        color:brown;
+    }
+
+    .with-nav-tabs.panel-primary .nav-tabs > li > a,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+    }
+
+    .with-nav-tabs.panel-primary .nav-tabs > .open > a,
+    .with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+    background-color: #3071a9;
+    border-color: transparent;
+    }
+
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+    color: #428bca;
+    background-color: #fff;
+    border-color: #428bca;
+    border-bottom-color: transparent;
+    }
+
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+        background-color: #428bca;
+        border-color: #3071a9;
+    }
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+        color: #fff;
+    }
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+        background-color: #3071a9;
+    }
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+        background-color: #4a9fe9;
+    }
+
+
+    .stylish-input-group .input-group-addon{
+        background: white !important;
+    }
+    .stylish-input-group .form-control{
+        border-right:0;
+        box-shadow:0 0 0;
+        border-color:#ccc;
+    }
+    .stylish-input-group button{
+        border:0;
+        background:transparent;
+    }
+
+    #imaginary_container
+    {
+        margin-right: 93px;
+        margin-left: 220px;
+    }
+    .fa-money:before
+    {
+        content: "\f0d6";
+        color: #337ab7;
+    }
+
+    .navbar
+    {
+      border-radius: 0px;
+    }
+
+    .navbar-inverse
+    {
+      background-color: white;
+      border-color: #3e3e3e;
+    }
+
+    .navbar-brand
+    {
+      padding: 0px;
+    }
+    .navbar-brand>img
+    {
+      height: 100%;
+      width: auto;
+    }
+
+    .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover
+    {
+      color: black;
+      background-color: lightgray;
+    }
+    .navbar-inverse .navbar-nav>li>a
+    {
+      color: black;
+    }
+    .navbar-inverse .navbar-nav>li>a:hover
+    {
+      color: black;
+    }
+
+  </style>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="trade.html"><img src="omnipoint.png" alt="Omnipoint" draggable="false"></a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class=""><a href="trade.html">Trade</a></li>
+          <li class="active"><a href="#">Account</a></li>
+          <li class=""><a href="#">Settings</a></li>
+          <li class=""><a href="#">Inventory Manager</a></li>
+          <li class=""><a href="#">Help</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Page Content -->
+    <div class="container"><br><br>
+        <div class="col-md-12">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Search" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            </div>
+        </div><br><br>
+        <div class="col-md-12">
+            <div class="col-md-1"></div>
+             <div class="col-md-10">
+                 <div class="panel with-nav-tabs panel-primary">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs nav-justified">
+                            <li class="active"><a href="#tab1primary" data-toggle="tab"><b>Balance</b></a></li>
+                            <li><a href="#tab2primary" data-toggle="tab"><b>Deposit</b></a></li>
+                            <li id="active_withdraw"><a href="#tab3primary" data-toggle="tab"><b>Withdraw</b></a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1primary">
+                                <div class="well well-sm">
+                                <table class="table table-hover">
+                                  <thead style="color:brown;">
+                                    <tr>
+                                        <th>Asset</th>
+                                        <th colspan="6" style="width:30%">Free</th>
+                                        <th>On-Hold</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                        <td>BTC</td>
+                                        <td>2</td><td><i onclick="change_withdraw()" class="fa fa-money" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td><td></td><td></td><td></td><td></td>
+                                      <td>3</td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>ETH</td>
+                                        <td>10</td><td><i onclick="change_withdraw()" class="fa fa-money" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td><td></td><td></td><td></td><td></td>
+                                      <td>0</td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>LTC</td>
+                                        <td>2</td><td><i onclick="change_withdraw()" class="fa fa-money" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td><td></td><td></td><td></td><td></td>
+                                      <td>3</td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>USD</td>
+                                        <td>2000</td><td><i onclick="change_withdraw()" class="fa fa-money" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td><td></td><td></td><td></td><td></td>
+                                      <td>1000</td>
+                                    </tr>
+                                    <tr>
+                                      <td>EUR</td>
+                                        <td>0</td><td><i onclick="change_withdraw()" class="fa fa-money" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td><td></td><td></td><td></td><td></td>
+                                      <td>3</td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab2primary">
+                                <div class="col-md-12">
+                                    <p><b style="color:black">Deposit Details:</b></p>
+                                    <div class="well well-sm" style="height:250px;">
+                                        <div class="form-group">
+                                          <span style="white-space: nowrap">
+                                            <div class="col-md-4">
+                                              <label>Choose asset to deposit</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                              <select class="form-control">
+                                                <option value="">Select Crypto</option>
+                                                <option value="BTC/USD">BTC/USD</option>
+                                                <option value="BTC/USD">BTC/USDT</option>
+                                                <option value="ETH/USD">ETH/USD</option>
+                                                <option value="ETH/USDT">ETH/USDT</option>
+                                                <option value="ETH/BTC">ETH/BTC</option>
+                                              </select>
+                                            </div>
+                                          </span>
+                                        </div><br><br>
+                                        <div class="form-group">
+                                          <span style="white-space: nowrap">
+                                            <div class="col-md-4">
+                                              <label>Wallet address</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                              <input type="text" class="form-control" placeholder="Enter wallet address">
+                                            </div>
+                                          </span>
+                                        </div><br><br>
+                                        <div class="form-group">
+                                          <span style="white-space: nowrap">
+                                            <div class="col-md-4">
+                                              <label>QR Code</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                              <img src="qrcode.png" style="width:100px;height:100px;">
+                                            </div>
+                                          </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <p><b style="color:black">Historical Deposits:</b></p>
+                                    <div class="well well-sm">
+                                    <table class="table table-hover">
+                                  <thead style="color:brown;">
+                                    <tr>
+                                        <th>Transaction DateTime</th>
+                                        <th>Asset</th>
+                                        <th>Units</th>
+                                        <th>Status</th>
+                                        <th>Transaction ID</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                        <td>2018-07-30 04:20:13</td>
+                                        <td>XRP</td>
+                                        <td>0.001</td>
+                                        <td>success</td>
+                                        <td>89797798789789</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2018-07-30 04:20:13</td>
+                                        <td>LTC</td>
+                                        <td>0.105</td>
+                                        <td>failed</td>
+                                        <td>98987798789789</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2018-07-30 04:20:13</td>
+                                        <td>BTC</td>
+                                        <td>0.205</td>
+                                        <td>success</td>
+                                        <td>45677798789789</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2018-07-30 04:20:13</td>
+                                        <td>ETH</td>
+                                        <td>1.005</td>
+                                        <td>failed</td>
+                                        <td>12347798789789</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2018-07-30 04:20:13</td>
+                                        <td>LTC</td>
+                                        <td>2.005</td>
+                                        <td>success</td>
+                                        <td>55667798789789</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab3primary">
+                                <div class="well well-sm">
+                                <table class="table table-hover">
+                                  <thead style="color:brown;">
+                                    <tr>
+                                        <th>Asset</th>
+                                        <th>Free Balance</th>
+                                        <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                        <td>BTC</td>
+                                        <td>2.0</td>
+                                        <td><button class="btn btn-default" data-toggle="collapse" data-target="#collapseme" onclick="collapse_hide()">Withdraw</button></td>
+                                    </tr>
+                                    <tr id="collapseme" class="collapse out" style="background-color:white;">
+                                        <td>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-6">
+                                                            <label style="color:black;margin-left:90px">Target wallet address</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" style="width:120%" placeholder="Enter target wallet address">
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" style="width:80%;margin-left:26px" onclick="withdraw_confirm()">Confirm</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" style="width:92%" onclick="withdraw_reset()">Reset</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                      <td>ETH</td>
+                                      <td>10.5</td>
+                                      <td><button class="btn btn-default" data-toggle="collapse" data-target="#collapseme1" onclick="collapse_hide()">Withdraw</button></td>
+                                    </tr>
+                                    <tr id="collapseme1" class="collapse out" style="background-color:white;">
+                                        <td>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-6">
+                                                            <label style="color:black;margin-left:90px">Target wallet address</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" style="width:120%" placeholder="Enter target wallet address">
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" style="width:80%;margin-left:26px" onclick="withdraw_confirm()">Confirm</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" style="width:92%" onclick="withdraw_reset()">Reset</button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>LTC</td>
+                                      <td>20.3</td>
+                                      <td><button class="btn btn-default" data-toggle="collapse" data-target="#collapseme2" onclick="collapse_hide()">Withdraw</button></td>
+                                    </tr>
+                                    <tr id="collapseme2" class="collapse out" style="background-color:white;">
+                                        <td>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-6">
+                                                            <label style="color:black;margin-left:90px">Target wallet address</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" style="width:120%" placeholder="Enter target wallet address">
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" style="width:80%;margin-left:26px" onclick="withdraw_confirm()">Confirm</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" style="width:92%" onclick="withdraw_reset()">Reset</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                      <td>USD</td>
+                                      <td>0.5</td>
+                                      <td><button class="btn btn-default" data-toggle="collapse" data-target="#collapseme3" onclick="collapse_hide()">Withdraw</button></td>
+                                    </tr>
+                                    <tr id="collapseme3" class="collapse out" style="background-color:white;">
+                                        <td>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-6">
+                                                            <label style="color:black;margin-left:90px">Target wallet address</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" style="width:120%" placeholder="Enter target wallet address">
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" style="width:80%;margin-left:26px" onclick="withdraw_confirm()">Confirm</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" style="width:92%" onclick="withdraw_reset()">Reset</button>
+                                        </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <!--<footer class="py-5 bg-dark">-->
+      <!--<div class="container">-->
+        <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /.container &ndash;&gt;-->
+    <!--</footer>-->
+
+    <!-- Bootstrap core JavaScript -->
+    <!--<script src="vendor/jquery/jquery.min.js"></script>-->
+    <!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+
+  </body>
+  <script>
+    $(document).ready(function()
+    {
+
+        $(".side_val").change(function()
+        {
+          var select_side = $(".side_val option:selected").val();
+          if(select_side == 'Buy')
+          {
+              $('.side_selection').show();
+          }
+          else
+          {
+              $('.side_selection').hide();
+          }
+
+          console.log(select_side);
+
+        });
+
+        $("#buy_select_type").change(function()
+        {
+          var select_type = $("#buy_select_type option:selected").val();
+          if(select_type == 'Limit')
+          {
+              $("#price").prop("disabled",false);
+          }
+          else
+          {
+              $('#price').prop('disabled',true);
+          }
+
+          console.log(buy_select_type);
+
+        });
+
+        $("#sell_select_type").change(function()
+        {
+          var select_type = $("#sell_select_type option:selected").val();
+          if(select_type == 'Limit')
+          {
+              $("#price").prop("disabled",false);
+          }
+          else
+          {
+              $('#price').prop('disabled',true);
+          }
+
+          console.log(sell_select_type);
+
+        });
+
+
+
+    });
+
+    function buy_submit()
+    {
+      alert("Buy details");
+    }
+    function buy_reset()
+    {
+      alert("Buy reset")
+    }
+    function sell_submit()
+    {
+      alert("Sell details")
+    }
+    function sell_reset()
+    {
+      alert("Sell reset")
+    }
+    function cancel_all_orders()
+    {
+      alert("Cancel all orders")
+
+    }
+    function show_btn1()
+    {
+      $('#btn_cancel1').css('display','block');
+      $('#btn_suspend1').css('display','block');
+      $('#btn_cancel2').css('display','none');
+      $('#btn_suspend2').css('display','none');
+      $('#tr1').addClass('highlight').siblings().removeClass('highlight');
+    }
+    function show_btn2()
+    {
+      $('#btn_cancel2').css('display','block');
+      $('#btn_suspend2').css('display','block');
+      $('#btn_cancel1').css('display','none');
+      $('#btn_suspend1').css('display','none');
+      $('#tr2').addClass('highlight').siblings().removeClass('highlight');
+    }
+    function btn_cancel1()
+    {
+      alert('Cancel order')
+    }
+    function btn_suspend1()
+    {
+      alert('suspend order')
+    }
+    function btn_cancel2()
+    {
+      alert('Cancel order')
+    }
+    function btn_suspend2()
+    {
+      alert('suspend order')
+    }
+    function Account()
+    {
+      alert("account");
+    }
+
+    function change_withdraw()
+    {
+        $('.nav-tabs a[href="#tab3primary"]').tab('show');
+    }
+    function collapse_hide()
+    {
+        $('.collapse').collapse('hide');
+    }
+
+
+  </script>
+</html>

@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Execution Services-Omni Point</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+.navbar
+    {
+      border-radius: 0px;
+    }
+
+    .navbar-inverse
+    {
+      background-color: white;
+      border-color: #3e3e3e;
+    }
+
+    .navbar-brand
+    {
+      padding: 0px;
+    }
+    .navbar-brand>img
+    {
+      height: 100%;
+      width: auto;
+    }
+
+    .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover
+    {
+      color: black;
+      background-color: lightgray;
+    }
+    .navbar-inverse .navbar-nav>li>a
+    {
+      color: black;
+    }
+    .navbar-inverse .navbar-nav>li>a:hover
+    {
+      color: black;
+    }
+
+
+    /*  bhoechie tab */
+    div.bhoechie-tab-container
+    {
+      z-index: 10;
+      background-color: #ffffff;
+      padding: 0 !important;
+      border-radius: 4px;
+      -moz-border-radius: 4px;
+      border:1px solid #ddd;
+      margin-top: 20px;
+      margin-left: 50px;
+      -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      background-clip: padding-box;
+      opacity: 0.97;
+      filter: alpha(opacity=97);
+    }
+    div.bhoechie-tab-menu
+    {
+      padding-right: 0;
+      padding-left: 0;
+      padding-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group
+    {
+      margin-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a
+    {
+      margin-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a .glyphicon,
+    div.bhoechie-tab-menu div.list-group>a .fa
+    {
+      color: #337ab7;
+    }
+    div.bhoechie-tab-menu div.list-group>a:first-child
+    {
+      border-top-right-radius: 0;
+      -moz-border-top-right-radius: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a:last-child
+    {
+      border-bottom-right-radius: 0;
+      -moz-border-bottom-right-radius: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a.active,
+    div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+    div.bhoechie-tab-menu div.list-group>a.active .fa
+    {
+      background-color: #337ab7;
+      background-image: #337ab7;
+      color: #ffffff;
+    }
+    div.bhoechie-tab-menu div.list-group>a.active:after
+    {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      margin-top: -13px;
+      border-left: 0;
+      border-bottom: 13px solid transparent;
+      border-top: 13px solid transparent;
+      border-left: 10px solid #337ab7;
+    }
+    #after_add
+    {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      margin-top: -13px;
+      border-left: 0;
+      border-bottom: 13px solid transparent;
+      border-top: 13px solid transparent;
+      border-left: 10px solid lightgray;
+    }
+    #after_manage
+    {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      margin-top: -13px;
+      border-left: 0;
+      border-bottom: 13px solid transparent;
+      border-top: 13px solid transparent;
+      border-left: 10px solid lightgray;
+    }
+    .remove_after
+    {
+        border-left:none;
+    }
+
+    div.bhoechie-tab-content
+    {
+      background-color: #ffffff;
+      /* border: 1px solid #eeeeee; */
+      padding-left: 20px;
+      padding-top: 10px;
+    }
+
+    div.bhoechie-tab div.bhoechie-tab-content:not(.active)
+    {
+      display: none;
+    }
+
+    .nav-list>li>a
+     {
+          color: #337ab7;
+          border:1px solid lightgray;
+     }
+
+    .add
+    {
+      margin-left:49%;
+      width:65%;
+    }
+    .reset
+    {
+      width:65%;
+      margin-left:-60px;
+    }
+    .active
+    {
+        background-color:red;
+    }
+    table th
+    {
+        color:#337ab7;
+    }
+    .glyphicon
+    {
+        color: #337ab7;
+    }
+    .transfer
+    {
+      margin-left:74%;
+      width:30%;
+    }
+    .transfer_reset
+    {
+      margin-right:229px;
+      width:30%;
+    }
+    .remove_sub
+    {
+        display:none;
+    }
+
+    legend
+    {
+        display: block;
+        width: 37%;
+        padding: 0;
+        margin-bottom: 20px;
+        font-size: 17px;
+        line-height: inherit;
+        color: #333;
+        border: 0;
+        /* border-bottom: 1px solid #e5e5e5; */
+        /* background-color: lightgray; */
+        margin-left: -234px;
+
+    }
+
+    fieldset
+    {
+        min-width: 0;
+        padding: 0;
+        margin: 0;
+        border: 1px solid gray;
+    }
+
+
+     /* Toggle Button */
+
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #337ab7;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #337ab7;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  left:-5px;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+<body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html"><img src="omnipoint.JPG" alt="Omnipoint" draggable="false"></a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class=""><a href="index.html">Home</a></li>
+            <li class=""><a href="trade.html">Trade</a></li>
+            <li class="active"><a href="#">Accounts</a></li>
+            <li class=""><a href="settings.html">Settings</a></li>
+            <li class=""><a href="#">Help</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i style="font-size:18px" class="fa fa-user" aria-hidden="true"></i></a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="margin-bottom:50px">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+                  <div class="list-group main_tab" id="sidenav01">
+                      <a href="#" class="list-group-item active text-center" id="balance_main" onclick="balance_bar()">
+                        <h4 class="glyphicon glyphicon-credit-card"></h4><br/>Balance
+                      </a>
+                      <a href="#" class="list-group-item text-center" id="deposit_main" onclick="deposit_bar()">
+                        <h4 class="glyphicon glyphicon-plus-sign"></h4><br/>Deposit
+                      </a>
+                      <a href="#" class="list-group-item text-center" id="withdraw_main" onclick="withdraw_bar()">
+                        <h4 class="glyphicon glyphicon-minus-sign"></h4><br/>Withdraw
+                      </a>
+                      <a href="#" class="list-group-item text-center collapsed" data-toggle="collapse" data-target="#toggleDemo" id="sub_account_main" onclick="sub_acc_bar()" data-parent="#sidenav01" class="collapsed">
+                        <h4 class="glyphicon glyphicon-folder-open"></h4><br/>Sub Accounts
+                      </a>
+                      <div class="collapse" id="toggleDemo" style="height: 0px;">
+                            <div style="display:none" id="after_add"></div>
+                            <div style="display:none" id="after_manage"></div>
+                            <ul class="nav nav-list">
+                              <li><a href="#" onclick="add_sub()" style="color:#555;text-align:center" id="add_sub">Add New Sub Accounts</a></li>
+                              <li><a href="#" onclick="manage_sub()" style="color:#555;text-align:center" id="manage_sub">Manage Sub Accounts</a></li>
+                            </ul>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                    <!-- Balance section -->
+                    <div class="bhoechie-tab-content active" id="balance">
+                        <center>
+                            <div class="well well-sm">
+                                <table class="table table-hover">
+                                    <thead style="color:brown;">
+                                        <tr>
+                                            <th>Asset</th>
+                                            <th colspan="2" style="width:30%;padding-left:25px">Available</th>
+                                            <th>On-Hold</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bitcoin (BTC)</td>
+                                            <td style="text-align:center">2</td><td><i onclick="change_deposit()" class="glyphicon glyphicon-plus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip"  title="Deposit"></i><i onclick="change_withdraw()" class="glyphicon glyphicon-minus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td>
+                                            <td>3</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Ethereum (ETH)</td>
+                                            <td style="text-align:center">10</td><td><i onclick="change_deposit()" class="glyphicon glyphicon-plus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Deposit"></i><i onclick="change_withdraw()" class="glyphicon glyphicon-minus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td>
+                                            <td>0</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Litecoin (LTC)</td>
+                                            <td style="text-align:center">2</td><td><i onclick="change_deposit()" class="glyphicon glyphicon-plus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Deposit"></i><i onclick="change_withdraw()" class="glyphicon glyphicon-minus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td>
+                                            <td>3</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Ripple (XRP)</td>
+                                            <td style="text-align:center">2000</td><td><i onclick="change_deposit()" class="glyphicon glyphicon-plus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Deposit"></i><i onclick="change_withdraw()" class="glyphicon glyphicon-minus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td>
+                                            <td>1000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Monero (XMR)</td>
+                                            <td style="text-align:center">0</td><td><i onclick="change_deposit()" class="glyphicon glyphicon-plus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Deposit"></i><i onclick="change_withdraw()" class="glyphicon glyphicon-minus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bitcoin Cash (BCH)</td>
+                                            <td style="text-align:center">10</td><td><i onclick="change_deposit()" class="glyphicon glyphicon-plus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Deposit"></i><i onclick="change_withdraw()" class="glyphicon glyphicon-minus-sign" style="font-size:20px;margin-left:15px;cursor:pointer" data-toggle="tooltip" title="Withdraw"></i></td>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </center>
+                    </div>
+                    <!-- Deposit section -->
+                    <div class="bhoechie-tab-content" id="deposit">
+                        <center>
+                            <div class="col-md-12" style="background-color:white;margin-bottom:10px">
+                                <div class="well well-sm" style="height:265px;">
+                                    <div class="form-group" style="margin-top:25px">
+                                      <span style="white-space: nowrap">
+                                        <div class="col-md-4" style="text-align:left">
+                                            <label style="margin-top:7px">Choose asset to deposit <span style="margin-left:69px">:</span></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <select class="form-control" id="asset_drop">
+                                            <option value="" disabled selected>--Select Asset--</option>
+                                            <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                                            <option value="Litcoin (LTC)">Litcoin (LTC)</option>
+                                            <option value="Ethereum (ETH)">Ethereum (ETH)</option>
+                                            <option value="Zcash (ZEC)">Zcash (ZEC)</option>
+                                            <option value="Dash (DASH)">Dash (DASH)</option>
+                                            <option value="Ripple (XRP)"> Ripple (XRP)</option>
+                                            <option value="Monero (XMR)">Monero (XMR)</option>
+                                            <option value="Bitcoin Cash (BCH)">Bitcoin Cash (BCH)</option>
+                                            <option value="Cardano (ADA)">Cardano (ADA)</option>
+                                            <option value="Maker (MKR)">Maker (MKR)</option>
+                                          </select>
+                                        </div>
+                                      </span>
+                                    </div><br><br><br>
+                                    <div class="form-group" style="display:none" id="wallet_addr">
+                                      <span style="white-space: nowrap">
+                                        <div class="col-md-4" style="text-align:left">
+                                          <label style="margin-right:62px">Send BTC to this Wallet address <span style="margin-left:16px">:</span></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p><b style="background-color:white">gjhdfgjhg8787jhhjhjhjghgg89877987</b></p>
+                                        </div>
+                                      </span>
+                                    </div><br><br>
+                                    <div class="form-group" style="display:none" id="qr">
+                                      <span style="white-space: nowrap">
+                                        <div class="col-md-4" style="text-align:left">
+                                          <label style="margin-right:100px">QR Code <span style="margin-left:171px">:</span></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <img src="qrcode.png" style="width:100px;height:100px;margin-right:130px">
+                                        </div>
+                                      </span>
+                                    </div><br><br>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="background-color:white">
+                                <p style="text-align:left"><b style="color:black;">Deposit History:</b></p>
+                                <div class="well well-sm">
+                                    <table class="table table-hover">
+                                        <thead style="color:brown;">
+                                            <tr>
+                                                <th>Transaction DateTime</th>
+                                                <th>Asset</th>
+                                                <th>Units</th>
+                                                <th>Status</th>
+                                                <th>Transaction ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Ripple (XRP)</td>
+                                                <td>0.001</td>
+                                                <td>success</td>
+                                                <td>89797798789789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Litecoin (LTC)</td>
+                                                <td>0.105</td>
+                                                <td>failed</td>
+                                                <td>98987798789789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Bitcoin (BTC)</td>
+                                                <td>0.205</td>
+                                                <td>success</td>
+                                                <td>45677798789789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Ethereum (ETH)</td>
+                                                <td>1.005</td>
+                                                <td>failed</td>
+                                                <td>12347798789789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Monero (XMR)</td>
+                                                <td>2.005</td>
+                                                <td>success</td>
+                                                <td>55667798789789</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+
+                    <!-- hotel search -->
+                    <div class="bhoechie-tab-content" id="withdraw">
+                        <center>
+                            <div class="col-md-12">
+                                <div class="well well-sm">
+                                    <table class="table table-hover">
+                                      <thead style="color:brown;">
+                                        <tr>
+                                            <th class="col-md-4">Asset</th>
+                                            <th class="col-md-4">Available Balance</th>
+                                            <th class="col-md-4">Action</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                            <td class="col-md-4">Bitcoin (BTC)</td>
+                                            <td class="col-md-4">2.0</td>
+                                            <td class="col-md-4"><button class="btn btn-default" data-toggle="collapse" data-target="#collapseme" onclick="collapse_hide()">Withdraw</button></td>
+                                        </tr>
+                                        <tr id="collapseme" class="collapse out" style="background-color:white;">
+                                            <td class="col-md-4">
+                                                <div>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-6">
+                                                            <label style="color:black;margin-left:-10px;margin-top:7px;font-size:16px">Target wallet address</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" style="width:272%;margin-left: 40px;" placeholder="Enter target wallet address">
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-4">
+                                                <button class="btn btn-success" style="width:35%;margin-left:169px;margin-top:15px" onclick="withdraw_confirm()">Confirm</button>
+                                            </td>
+                                            <td class="col-md-4">
+                                                <button class="btn btn-success" style="width:35%;margin-left:sub-41px;margin-top:15px" onclick="withdraw_reset()">Reset</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                          <td>Ethereum (ETH)</td>
+                                          <td>10.5</td>
+                                          <td><button class="btn btn-default" data-toggle="collapse" data-target="#collapseme1" onclick="collapse_hide()">Withdraw</button></td>
+                                        </tr>
+                                        <tr id="collapseme1" class="collapse out" style="background-color:white;">
+                                            <td class="col-md-4">
+                                                <div>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-6">
+                                                            <label style="color:black;margin-left:-10px;margin-top:7px;font-size:16px">Target wallet address</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" style="width:272%;margin-left: 40px;" placeholder="Enter target wallet address">
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-4">
+                                                <button class="btn btn-success" style="width:35%;margin-left:169px;margin-top:15px" onclick="withdraw_confirm()">Confirm</button>
+                                            </td>
+                                            <td class="col-md-4">
+                                                <button class="btn btn-success" style="width:35%;margin-left:sub-41px;margin-top:15px" onclick="withdraw_reset()">Reset</button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                          <td>Litecoin (LTC)</td>
+                                          <td>20.3</td>
+                                          <td><button class="btn btn-default" data-toggle="collapse" data-target="#collapseme2" onclick="collapse_hide()">Withdraw</button></td>
+                                        </tr>
+                                        <tr id="collapseme2" class="collapse out" style="background-color:white;">
+                                            <td class="col-md-4">
+                                                <div>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-6">
+                                                            <label style="color:black;margin-left:-10px;margin-top:7px;font-size:16px">Target wallet address</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" style="width:272%;margin-left: 40px;" placeholder="Enter target wallet address">
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-4">
+                                                <button class="btn btn-success" style="width:35%;margin-left:169px;margin-top:15px" onclick="withdraw_confirm()">Confirm</button>
+                                            </td>
+                                            <td class="col-md-4">
+                                                <button class="btn btn-success" style="width:35%;margin-left:sub-41px;margin-top:15px" onclick="withdraw_reset()">Reset</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                          <td>Ripple (XRP)</td>
+                                          <td>0.5</td>
+                                          <td><button class="btn btn-default" data-toggle="collapse" data-target="#collapseme3" onclick="collapse_hide()">Withdraw</button></td>
+                                        </tr>
+                                        <tr id="collapseme3" class="collapse out" style="background-color:white;">
+                                            <td class="col-md-4">
+                                                <div>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-6">
+                                                            <label style="color:black;margin-left:-10px;margin-top:7px;font-size:16px">Target wallet address</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" style="width:272%;margin-left: 40px;" placeholder="Enter target wallet address">
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-4">
+                                                <button class="btn btn-success" style="width:35%;margin-left:169px;margin-top:15px" onclick="withdraw_confirm()">Confirm</button>
+                                            </td>
+                                            <td class="col-md-4">
+                                                <button class="btn btn-success" style="width:35%;margin-left:sub-41px;margin-top:15px" onclick="withdraw_reset()">Reset</button>
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <p style="text-align:left"><b style="color:black">Withdrawal History:</b></p>
+                                <div class="well well-sm">
+                                    <table class="table table-hover">
+                                        <thead style="color:brown;">
+                                            <tr>
+                                                <th>Transaction DateTime</th>
+                                                <th>Asset</th>
+                                                <th>Units</th>
+                                                <th>Status</th>
+                                                <th>Transaction ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Ripple (XRP)</td>
+                                                <td>0.001</td>
+                                                <td>success</td>
+                                                <td>89797798789789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Litecoin (LTC)</td>
+                                                <td>0.105</td>
+                                                <td>failed</td>
+                                                <td>98987798789789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Bitcoin (BTC)</td>
+                                                <td>0.205</td>
+                                                <td>success</td>
+                                                <td>45677798789789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Ethereum (ETH)</td>
+                                                <td>1.005</td>
+                                                <td>failed</td>
+                                                <td>12347798789789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-07-30 04:20:13</td>
+                                                <td>Litecoin (LTC)</td>
+                                                <td>2.005</td>
+                                                <td>success</td>
+                                                <td>55667798789789</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="bhoechie-tab-content" id="subaccount">
+                        <center>
+                            <div class="well well-sm">
+                                <h1>Sub Account</h1>
+                                <p style="text-align:left">A sub account is a segregated balance of funds (account) for which the bank acts on behalf of the account holder. Such accounts operate under very strict guidelines, as funds can only be accessed in accordance with the terms of a Power of Attorney agreement approved and executed by the bank. The deposited funds are not bank assets.</p>
+                                <br>
+                                <p style="text-align:left">At the most basic level, a sub-account can be thought of as an account within an account. Entities set up sub-accounts for a variety of book keeping and administrative purposes.</p>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="bhoechie-tab-content" id="add_subaccount" style="display:none">
+                        <center>
+                            <div class="well well-sm" style="height:580px;">
+                                <div class="col-md-12" style="margin-top:20px">
+                                      <div class="col-md-11">
+                                        <form>
+                                            <fieldset>
+                                                <legend style="width:26%;margin-left:-429px;font-weight:bold">Sub Account Details</legend>
+                                                <div class="form-group">
+                                                  <span style="white-space: nowrap">
+                                                      <div class="col-md-5">
+                                                          <label style="margin-left:-38px">New Sub Account Name</label>
+                                                      </div>
+                                                      <div class="col-md-1">
+                                                          <span><b>:</b></span>
+                                                      </div>
+                                                      <div class="col-md-5">
+                                                        <input type="text" class="form-control" placeholder="Enter sub account name" style="width:110%;margin-left:-20px;margin-top:-7px">
+                                                      </div>
+                                                  </span>
+                                                </div><br><br>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-5">
+                                                            <label style="margin-left:-2px">Allow to Modify Risk Settings</label>
+                                                        </div>
+                                                        <div class="col-md-1" style="margin-top:2px">
+                                                            <span><b>:</b></span>
+                                                      </div>
+                                                        <div class="col-md-5" style="margin-left:-123px;margin-top:-2px">
+                                                          <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-5">
+                                                            <label style="margin-top:7px;margin-left:27px">Allow to Modify Market Center Settings</label>
+                                                        </div>
+                                                        <div class="col-md-1" style="margin-top:8px">
+                                                            <span><b>:</b></span>
+                                                      </div>
+                                                        <div class="col-md-5" style="margin-left:-123px;margin-top:7px">
+                                                          <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-5">
+                                                            <label style="margin-top:7px;margin-left:29px">Allow to View Main Account Balance</label>
+                                                        </div>
+                                                        <div class="col-md-1" style="margin-top:6px">
+                                                            <span><b>:</b></span>
+                                                      </div>
+                                                        <div class="col-md-5" style="margin-left:-123px;margin-top:3px">
+                                                          <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-3" style="margin-left:135px">
+                                                      <button class="btn btn-success add" onclick="add_sub_account()">Add</button>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                      <button class="btn btn-success reset" onclick="reset_sub_account()">Reset</button>
+                                                    </div>
+                                                </div><br><br><br>
+                                            </fieldset>
+                                        </form>
+                                      </div>
+                                  </div><br><br>
+
+
+                                <div class="col-md-12" style="margin-top:25px">
+                                    <div class="col-md-11">
+                                        <form>
+                                            <fieldset>
+                                                <legend style="font-weight:bold;margin-left:-429px;width:27%">Active Sub Accounts</legend>
+                                                <ul style="list-style:none;font-size:18px;cursor:pointer">
+                                                    <li style="text-align:left"><a>Sub Account1</a></li>
+                                                    <li style="text-align:left"><a>Sub Account2</a></li>
+                                                    <li style="text-align:left"><a>Sub Account3</a></li>
+                                                    <li style="text-align:left"><a>Sub Account4</a></li>
+                                                </ul>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+
+                    <div class="bhoechie-tab-content" id="manage_subaccount" style="display:none">
+                        <center>
+                            <div class="col-md-12" style="background-color:white;margin-bottom:10px">
+                                <div class="well well-sm" style="height:902px;">
+                                    <div class="form-group" style="margin-top:25px">
+                                      <span style="white-space: nowrap">
+                                        <div class="col-md-4" style="text-align:left">
+                                          <label style="margin-top:7px:">Select Sub Account</label>
+                                        </div>
+                                          <div class="col-md-1" style="margin-left:-105px">
+                                              <span><b>:</b></span>
+                                          </div>
+                                        <div class="col-md-4" style="margin-left:-52px;margin-top:-7px">
+                                          <select class="form-control" id="select_sub_account">
+                                            <option value="" disabled selected>--Select Sub Account--</option>
+                                            <option value="Sub_Account_1">Sub Account 1</option>
+                                            <option value="Sub_Account_2">Sub Account 2</option>
+                                            <option value="Sub_Account_3">Sub Account 3</option>
+                                            <option value="Sub_Account_4">Sub Account 4</option>
+                                          </select>
+                                        </div>
+                                      </span>
+                                    </div><br><br><br><br>
+                                    <div class="col-md-12" style="display:none" id="sub_account_table">
+                                        <table class="table table-hover" style="border:1px solid gray;background-color:white">
+                                            <thead style="color:brown;">
+                                                <tr>
+                                                    <th>Asset</th>
+                                                    <th>Availabe</th>
+                                                    <th>On-Hold</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Bitcoin (BTC)</td>
+                                                    <td>2</td>
+                                                    <td>3</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Ethereum (ETH)</td>
+                                                    <td>10</td>
+                                                    <td>0</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Litecoin (LTC)</td>
+                                                    <td>2</td>
+                                                    <td>3</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Ripple (XRP)</td>
+                                                    <td>2000</td>
+                                                    <td>1000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Monero (XMR)</td>
+                                                    <td>0</td>
+                                                    <td>3</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-md-12" style="width:96%;margin-left: 15px;">
+                                        <br><br>
+                                        <form style="margin-left:-15px;width:105%">
+                                            <fieldset>
+                                                <legend style="font-weight:bold;width:31%;margin-left:-445px">Transfer between accounts</legend>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-2">
+                                                            <label style="margin-top:7px">Asset</label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                          <select class="form-control" id="asset_selection">
+                                                            <option value="" disabled selected>--Select Asset--</option>
+                                                            <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                                                            <option value="Litcoin (LTC)">Litcoin (LTC)</option>
+                                                            <option value="Ethereum (ETH)">Ethereum (ETH)</option>
+                                                            <option value="Zcash (ZEC)">Zcash (ZEC)</option>
+                                                            <option value="Dash (DASH)">Dash (DASH)</option>
+                                                            <option value="Ripple (XRP)"> Ripple (XRP)</option>
+                                                            <option value="Monero (XMR)">Monero (XMR)</option>
+                                                            <option value="Bitcoin Cash (BCH)">Bitcoin Cash (BCH)</option>
+                                                            <option value="Cardano (ADA)">Cardano (ADA)</option>
+                                                            <option value="Maker (MKR)">Maker (MKR)</option>
+                                                          </select>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label style="margin-top:7px">Units</label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="text" class="form-control" placeholder="Enter units">
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <br><br>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-2">
+                                                            <label style="margin-top:7px">From</label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                          <select class="form-control" id="from_addr">
+                                                            <option value="" disabled selected>--Select Account--</option>
+                                                            <option value="Main">Main</option>
+                                                            <option value="Sub Account 1">Sub Account 1</option>
+                                                            <option value="Sub Account 2">Sub Account 2</option>
+                                                            <option value="Sub Account 3">Sub Account 3</option>
+                                                          </select>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label style="margin-top:7px">To</label>
+                                                        </div>
+                                                        <div class="col-md-4" id="to_acc">
+                                                            <input type="text" class="form-control" placeholder="To account">
+                                                        </div>
+                                                        <div class="col-md-4" style="display:none" id="main_addrs">
+                                                            <input type="text" class="form-control" value="Main">
+                                                        </div>
+                                                        <div class="col-md-4" style="display:none" id="to_addr">
+                                                            <select class="form-control">
+                                                                <option value="" disabled selected>Select Sub Account</option>
+                                                                <option value="Sub Account 1">Sub Account 1</option>
+                                                                <option value="Sub Account 2">Sub Account 2</option>
+                                                                <option value="Sub Account 3">Sub Account 3</option>
+                                                          </select>
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                <p style="margin-right:485px;color:green;display:none" id="available_balance">* Available Balance : 4.0005</p>
+                                                <br>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                      <button class="btn btn-primary transfer" onclick="manage_transfer()">Transfer</button>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <button class="btn btn-primary transfer_reset" onclick="manage_reset()">Reset</button>
+                                                    </div>
+                                                </div>
+                                                <br><br><br>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top:20px;display:none" id="modify_entitlements">
+                                        <form style="width:101%">
+                                            <fieldset>
+                                                <legend style="width:42%;margin-left:-350px;font-weight:bold">Modify Entitlements for Sub Account</legend>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-4">
+                                                            <label style="margin-left:-18px">Modify Risk Settings</label>
+                                                        </div>
+                                                        <div class="col-md-1" style="margin-top:2px">
+                                                            <span><b>:</b></span>
+                                                      </div>
+                                                        <div class="col-md-4" style="margin-left:-110px;margin-top:-2px">
+                                                          <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-4">
+                                                            <label style="margin-top:7px;margin-left:34px">Modify Market Center Settings</label>
+                                                        </div>
+                                                        <div class="col-md-1" style="margin-top:8px">
+                                                            <span><b>:</b></span>
+                                                      </div>
+                                                        <div class="col-md-4" style="margin-left:-110px;margin-top:7px">
+                                                          <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                                <div class="form-group">
+                                                    <span style="white-space: nowrap">
+                                                        <div class="col-md-4">
+                                                            <label style="margin-top:7px;margin-left:35px">View Main Account Balance</label>
+                                                        </div>
+                                                        <div class="col-md-1" style="margin-top:6px">
+                                                            <span><b>:</b></span>
+                                                      </div>
+                                                        <div class="col-md-4" style="margin-left:-110px;margin-top:3px">
+                                                          <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                                                        </div>
+                                                    </span>
+                                                </div><br><br>
+                                            </fieldset>
+                                        </form>
+                                  </div><br><br>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+
+                </div>
+            </div>
+      </div>
+    </div>
+</body>
+<script>
+  $(document).ready(function()
+  {
+    /*$("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        $("#add_subaccount").hide();
+        $("#manage_subaccount").hide();
+        collapse_hide();
+    }); */
+
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $("#asset_drop").change(function()
+    {
+
+        var select_asset = $("#asset_drop option:selected").val();
+        if(select_asset != '')
+        {
+            $("#wallet_addr").css('display','block');
+            $("#qr").css('display','block');
+        }
+        else
+        {
+            $("#wallet_addr").css('display','none');
+            $("#qr").css('display','none');
+
+        }
+
+      console.log(select_asset);
+
+    });
+
+    $("#select_sub_account").change(function()
+    {
+        var select_asset = $("#select_sub_account option:selected").val();
+        console.log(select_asset);
+        if(select_asset != '')
+        {
+            $("#sub_account_table").css('display','block');
+            $("#modify_entitlements").css('display','block');
+        }
+        else
+        {
+            $("#sub_account_table").css('display','none');
+            $("#modify_entitlements").css('display','none');
+
+        }
+
+    });
+    $("#asset_selection").change(function()
+    {
+        var select_asset = $("#asset_selection option:selected").val();
+        console.log(select_asset);
+        if(select_asset != '')
+        {
+            $("#available_balance").css('display','block');
+        }
+        else
+        {
+            $("#available_balance").css('display','none');
+
+        }
+
+    });
+    $("#from_addr").change(function()
+    {
+        var select_asset = $("#from_addr option:selected").val();
+        console.log(select_asset);
+
+        if(select_asset == 'Main')
+        {
+            $("#to_addr").show();
+            $("#main_addrs").css('display','none');
+            $("#to_acc").css('display','none');
+        }
+        else
+        {
+            $("#main_addrs").css('display','block');
+            $("#to_addr").css('display','none');
+            $("#to_acc").css('display','none');
+        }
+
+    });
+});
+
+function change_deposit()
+{
+    $("#deposit").siblings('a.active').removeClass("active");
+    $("#deposit_main").addClass("active");
+    $("#subaccount").addClass("remove_sub")
+    $("#balance_main").removeClass("active");
+    var index = $("#deposit").index();
+    $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+    $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+
+}
+function change_withdraw()
+{
+    $("#withdraw").siblings('a.active').removeClass("active");
+    $("#withdraw_main").addClass("active");
+    $("#balance_main").removeClass("active");
+    var index = $("#withdraw").index();
+    $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+    $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+
+}
+function collapse_hide()
+{
+    $('.collapse').collapse('hide');
+}
+function add_sub()
+{
+    $("#subaccount").hide();
+    $("#add_subaccount").show();
+    $("#manage_subaccount").hide();
+    $("#add_sub").css({'background-color':'lightgray','color':'black'});
+    $("#manage_sub").css({'background-color':'white','color':'#555'});
+
+    $("#after_add").css('display','block');
+    $("#add_sub").after($('#after_add'));
+    $("#after_manage").css('display','none');
+
+}
+function manage_sub()
+{
+     $("#subaccount").hide();
+     $("#add_subaccount").hide();
+     $("#manage_subaccount").show();
+     $("#add_sub").css({'background-color':'white','color':'#555'});
+     $("#manage_sub").css({'background-color':'lightgray','color':'black'});
+
+     $("#after_manage").css('display','block');
+     $("#manage_sub").after($('#after_manage'));
+     $("#after_add").css('display','none');
+
+}
+function sub_acc()
+{
+    $("#subaccount").show();
+    $("#add_subaccount").hide();
+    $("#manage_subaccount").hide();
+}
+
+function add_sub_account()
+{
+    alert("Do you want to add sub account?")
+}
+function reset_sub_account()
+{
+    alert("Do you want to reset sub account?")
+}
+function manage_transfer()
+{
+    alert("Do you want to transfer crypto??")
+}
+function manage_reset()
+{
+    alert("Do you want to reset values?")
+}
+
+function deposit_bar()
+{
+    $("#deposit_main").addClass("active");
+    $("#deposit").addClass("active");
+    $("#balance_main").removeClass("active");
+    $("#balance").removeClass("active");
+    $("#withdraw_main").removeClass("active");
+    $("#withdraw").removeClass("active");
+    $("#sub_account_main").removeClass("active");
+    $("#subaccount").removeClass("active");
+    collapse_hide();
+     $("#add_subaccount").hide();
+    $("#manage_subaccount").hide();
+
+}
+function balance_bar()
+{
+
+    $("#balance_main").addClass("active");
+    $("#balance").addClass("active");
+    $("#deposit_main").removeClass("active");
+    $("#deposit").removeClass("active");
+    $("#withdraw_main").removeClass("active");
+    $("#withdraw").removeClass("active");
+    $("#sub_account_main").removeClass("active");
+    $("#subaccount").removeClass("active");
+    collapse_hide();
+     $("#add_subaccount").hide();
+    $("#manage_subaccount").hide();
+}
+function withdraw_bar()
+{
+    $("#withdraw_main").addClass("active");
+    $("#withdraw").addClass("active");
+    $("#balance_main").removeClass("active");
+    $("#balance").removeClass("active");
+    $("#deposit_main").removeClass("active");
+    $("#deposit").removeClass("active");
+    $("#sub_account_main").removeClass("active");
+    $("#subaccount").removeClass("active");
+    collapse_hide();
+     $("#add_subaccount").hide();
+    $("#manage_subaccount").hide();
+
+}
+function sub_acc_bar()
+{
+    $("#sub_account_main").addClass("active");
+    $("#subaccount").addClass("active");
+    $("#subaccount").show();
+
+    $("#withdraw_main").removeClass("active");
+    $("#withdraw").removeClass("active");
+    $("#balance_main").removeClass("active");
+    $("#balance").removeClass("active");
+    $("#deposit_main").removeClass("active");
+    $("#deposit").removeClass("active");
+
+    $("#add_subaccount").hide();
+    $("#manage_subaccount").hide();
+
+    $("#add_sub").css({'background-color':'white','color':'#555'});
+    $("#manage_sub").css({'background-color':'white','color':'#555'});
+
+    $("#after_add").css('display','none');
+    $("#after_manage").css('display','none');
+}
+
+</script>
+</html>
