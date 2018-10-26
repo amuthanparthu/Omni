@@ -64,6 +64,12 @@
       text-overflow: ellipsis;
       max-width: 147px;
     }
+    .buy_table tr:hover td,.sell_table tr:hover td
+    {
+      background:black;
+    }
+
+
     .buy_label
     {
       color:green;
@@ -79,7 +85,7 @@
     .navbar-inverse
     {
       background-color: white;
-      border-color: #3e3e3e;
+      border-color: white;
     }
     .table tbody tr.highlight td
     {
@@ -101,8 +107,8 @@
 
     .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover
     {
-      color: black;
-      background-color: lightgray;
+      color: #337ab7;
+      background-color: white;
     }
     .navbar-inverse .navbar-nav>li>a
     {
@@ -140,6 +146,19 @@
        color:white;
     }
 
+    .stylish-input-group .input-group-addon{
+        background: white !important;
+    }
+    .stylish-input-group .form-control{
+        border-right:0;
+        box-shadow:0 0 0;
+        border-color:#ccc;
+    }
+    .stylish-input-group button{
+        border:0;
+        background:transparent;
+    }
+
 
   </style>
   <body>
@@ -152,7 +171,7 @@
         </div>
         <ul class="nav navbar-nav">
           <li class=""><a href="index.html">Home</a></li>
-          <li class="active"><a href="#">Trade</a></li>
+          <li class="active"><a href="#"><b style="font-size:18px;text-shadow:1px 0px">Trade</b></a></li>
           <li class=""><a href="account.html">Account</a></li>
           <li class=""><a href="settings.html">Settings</a></li>
           <li class=""><a href="#">Help</a></li>
@@ -176,622 +195,723 @@
       </div>
     </nav>
     <!-- Page Content -->
-    <div class="container-fluid"><br><br>
-      <div class="col-md-3">
+    <div class="container-fluid">
+      <div class="col-md-12">
+        <div class="input-group stylish-input-group" style="margin-left:85%;margin-right:16px">
+            <input type="text" class="form-control"  value="" placeholder="Search" >
+            <span class="input-group-addon">
+                <button type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+      </div><br><br>
+      <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+              <div class="panel-heading"><b>Order Entry</b></div>
+              <div class="panel-body">
+                <ul class="nav nav-tabs nav-justified">
+                  <li class="active"><a data-toggle="tab" href="#buy" style="color:green"><b>Buy</b></a></li>
+                  <li><a data-toggle="tab" href="#sell" style="color:brown"><b>Sell</b></a></li>
+                </ul>
+                <div class="tab-content">
+                  <div id="buy" class="tab-pane fade in active"><br>
+
+                    <div class="col-md-12 buy_label">
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Asset</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control">
+                              <option value="" disabled selected>--Select Asset--</option>
+                              <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                              <option value="Litcoin (LTC)">Litcoin (LTC)</option>
+                              <option value="Ethereum (ETH)">Ethereum (ETH)</option>
+                              <option value="Zcash (ZEC)">Zcash (ZEC)</option>
+                              <option value="Dash (DASH)">Dash (DASH)</option>
+                              <option value="Ripple (XRP)"> Ripple (XRP)</option>
+                              <option value="Monero (XMR)">Monero (XMR)</option>
+                              <option value="Bitcoin Cash (BCH)">Bitcoin Cash (BCH)</option>
+                              <option value="Cardano (ADA)">Cardano (ADA)</option>
+                              <option value="Maker (MKR)">Maker (MKR)</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Quote Currency</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control">
+                              <option value="" disabled selected>--Select QC--</option>
+                              <option value="VWAP">BTC</option>
+                              <option value="TWAP">USD</option>
+                              <option value="DMA">EUR</option>
+                              <option value="KRW">KRW</option>
+                              <option value="JPY">JPY</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Quantity</label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Enter quantity">
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Type</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control" id="buy_select_type">
+                              <option value="" disabled selected>--Select Type--</option>
+                              <option value="Market">Market</option>
+                              <option value="Limit">Limit</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label style="margin-top:25px">Price</label>
+                          </div>
+                          <div class="col-md-6">
+                            <a href="#" data-toggle="modal" data-target="#myModal">Lowest ask : 6636</a>
+                            <div class="modal" id="myModal" role="dialog">
+                                <div class="modal-dialog modal-sm" style="margin-left:13%;margin-top:26%;width:327px">
+                                  <div class="modal-content">
+                                    <div class="modal-body" style="background-color:#282B30">
+                                      <table class="table table-hover buy_table" style="overflow-x:hidden;background-color:#282B30">
+                                        <thead style="background-color:#282B30;text-align:center;border-top:0.5px solid white">
+                                          <tr>
+                                            <th style="color:white;border-bottom:none;text-align:center;width:5%">ASK</th>
+                                            <th style="color:white;border-bottom:none;text-align:center;width:5%">VOLUME</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody style="color:#FF2A68;overflow-y:hidden;height:auto;text-align:center">
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6403.01</td>
+                                            <td style="height:8px;padding:0px">2.57056338</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6425.93</td>
+                                            <td style="height:8px;padding:0px">1.02600000</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6424.27</td>
+                                            <td style="height:8px;padding:0px">0.35460000</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6431.59</td>
+                                            <td style="height:8px;padding:0px">2.78400000</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6434.49</td>
+                                            <td style="height:8px;padding:0px">7.76940409</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6450.00</td>
+                                            <td style="height:8px;padding:0px">2.02200000</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6459.96</td>
+                                            <td style="height:8px;padding:0px">12.5000000</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <input type="text" id="price" class="form-control" value="0.005" disabled>
+                          </div>
+                        </span>
+                      </div><br><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Strategy</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control">
+                              <option value="" disabled selected>-Select Strategy-</option>
+                              <option value="VWAP">VWAP</option>
+                              <option value="TWAP">TWAP</option>
+                              <option value="DMA">DMA</option>
+                              <option value="SOR">SOR</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Expiry</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control" id="expiry_val">
+                              <option value="" disabled selected>--Select Expiry--</option>
+                              <option value="Immediate or Cancel">Immediate or Cancel</option>
+                              <option value="TWAP">Fill or Kill</option>
+                              <option value="Day">Day</option>
+                              <option value="Custom">Custom</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+
+                      <div class="form-group" style="display:none" id="start_time">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Start Time</label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Start time">
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group" style="display:none" id="end_time">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>End Time</label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="End time">
+                          </div>
+                        </span>
+                      </div><br><br><br>
+                    </div>
+                  </div>
+                  <div id="sell" class="tab-pane fade">
+                    <br>
+                    <div class="col-md-12 sell_label">
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Asset</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control">
+                              <option value="" disabled selected>--Select Asset--</option>
+                              <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                              <option value="Litcoin (LTC)">Litcoin (LTC)</option>
+                              <option value="Ethereum (ETH)">Ethereum (ETH)</option>
+                              <option value="Zcash (ZEC)">Zcash (ZEC)</option>
+                              <option value="Dash (DASH)">Dash (DASH)</option>
+                              <option value="Ripple (XRP)"> Ripple (XRP)</option>
+                              <option value="Monero (XMR)">Monero (XMR)</option>
+                              <option value="Bitcoin Cash (BCH)">Bitcoin Cash (BCH)</option>
+                              <option value="Cardano (ADA)">Cardano (ADA)</option>
+                              <option value="Maker (MKR)">Maker (MKR)</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Quote Currency</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control">
+                              <option value="" disabled selected>--Select QC--</option>
+                              <option value="VWAP">BTC</option>
+                              <option value="TWAP">USD</option>
+                              <option value="DMA">EUR</option>
+                              <option value="KRW">KRW</option>
+                              <option value="JPY">JPY</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Quantity</label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Enter quantity">
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Type</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control" id="buy_select_type">
+                              <option value="" disabled selected>--Select Type--</option>
+                              <option value="Market">Market</option>
+                              <option value="Limit">Limit</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label style="margin-top:25px">Price</label>
+                          </div>
+                          <div class="col-md-6">
+                            <a href="#" data-toggle="modal" data-target="#myModal1">Highest Bid : 6632</a>
+                            <div class="modal" id="myModal1" role="dialog">
+                                <div class="modal-dialog modal-sm" style="margin-left:13%;margin-top:26%;width:327px">
+                                  <div class="modal-content">
+                                    <div class="modal-body" style="background-color:#282B30">
+                                      <table class="table table-hover sell_table" style="overflow-x:hidden;background-color:#282B30">
+                                        <thead style="background-color:#282B30;text-align:center;border-top:0.5px solid white">
+                                          <tr>
+                                            <th style="color:white;border-bottom:none;text-align:center;width:5%">BID</th>
+                                            <th style="color:white;border-bottom:none;text-align:center;width:5%">VOLUME</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody style="color:#8EC919;overflow-y:hidden;height:auto;text-align:center">
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6418.00</td>
+                                            <td style="height:8px;padding:0px">1.43562377</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6405.23</td>
+                                            <td style="height:8px;padding:0px">0.26895689</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6406.00</td>
+                                            <td style="height:8px;padding:0px">7.80518264</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6398.92</td>
+                                            <td style="height:8px;padding:0px">0.62528113</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6388.62</td>
+                                            <td style="height:8px;padding:0px">2.49697300</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6377.13</td>
+                                            <td style="height:8px;padding:0px">1.78689784</td>
+                                          </tr>
+                                          <tr>
+                                            <td style="height:8px;padding:0px">6354.03</td>
+                                            <td style="height:8px;padding:0px">3.78427144</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <input type="text" id="price" class="form-control" value="0.005" disabled>
+                          </div>
+                        </span>
+                      </div><br><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Strategy</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control">
+                              <option value="" disabled selected>-Select Strategy-</option>
+                              <option value="VWAP">VWAP</option>
+                              <option value="TWAP">TWAP</option>
+                              <option value="DMA">DMA</option>
+                              <option value="SOR">SOR</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Expiry</label>
+                          </div>
+                          <div class="col-md-6">
+                            <select class="form-control" id="sell_expiry_val">
+                              <option value="" disabled selected>--Select Expiry--</option>
+                              <option value="Immediate or Cancel">Immediate or Cancel</option>
+                              <option value="TWAP">Fill or Kill</option>
+                              <option value="Day">Day</option>
+                              <option value="Custom">Custom</option>
+                            </select>
+                          </div>
+                        </span>
+                      </div><br><br>
+
+                      <div class="form-group" style="display:none" id="sell_start_time">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>Start Time</label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Start time">
+                          </div>
+                        </span>
+                      </div><br><br>
+                      <div class="form-group" style="display:none" id="sell_end_time">
+                        <span style="white-space: nowrap">
+                          <div class="col-md-6">
+                            <label>End Time</label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="End time">
+                          </div>
+                        </span>
+                      </div><br><br><br>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12" style="margin-left:98px">
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="" style="margin-left:-28px"><b>Allow Principal Execution</b>
+                  </label><br><br>
+                </div>
+                <div class="col-sm-12">
+                  <div class="col-sm-6">
+                    <button class="btn btn-primary submit" onclick="buy_submit()">Submit</button>
+                  </div>
+                  <div class="col-sm-6">
+                    <button class="btn btn-primary reset" onclick="buy_reset()">Reset</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-9">
           <div class="panel panel-primary">
-            <div class="panel-heading"><b>Order Entry</b></div>
-            <div class="panel-body">
-              <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a data-toggle="tab" href="#buy" style="color:green"><b>Buy</b></a></li>
-                <li><a data-toggle="tab" href="#sell" style="color:brown"><b>Sell</b></a></li>
-              </ul>
-              <div class="tab-content">
-                <div id="buy" class="tab-pane fade in active"><br>
-
-                  <div class="col-md-12 buy_label">
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Asset</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control">
-                            <option value="" disabled selected>--Select Asset--</option>
-                            <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
-                            <option value="Litcoin (LTC)">Litcoin (LTC)</option>
-                            <option value="Ethereum (ETH)">Ethereum (ETH)</option>
-                            <option value="Zcash (ZEC)">Zcash (ZEC)</option>
-                            <option value="Dash (DASH)">Dash (DASH)</option>
-                            <option value="Ripple (XRP)"> Ripple (XRP)</option>
-                            <option value="Monero (XMR)">Monero (XMR)</option>
-                            <option value="Bitcoin Cash (BCH)">Bitcoin Cash (BCH)</option>
-                            <option value="Cardano (ADA)">Cardano (ADA)</option>
-                            <option value="Maker (MKR)">Maker (MKR)</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Quote Currency</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control">
-                            <option value="" disabled selected>--Select QC--</option>
-                            <option value="VWAP">BTC</option>
-                            <option value="TWAP">USD</option>
-                            <option value="DMA">EUR</option>
-                            <option value="KRW">KRW</option>
-                            <option value="JPY">JPY</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Quantity</label>
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control" placeholder="Enter quantity">
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Type</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control" id="buy_select_type">
-                            <option value="" disabled selected>--Select Type--</option>
-                            <option value="Market">Market</option>
-                            <option value="Limit">Limit</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label style="margin-top:25px">Price</label>
-                        </div>
-                        <div class="col-md-6">
-                          <a href="#" data-toggle="popover1" title="Consolidated Market Data" data-content="Consolidated Ask for Crypto will be displayed here">Lowest ask : 6636</a>
-                          <input type="text" id="price" class="form-control" value="0.005" disabled>
-                        </div>
-                      </span>
-                    </div><br><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Strategy</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control">
-                            <option value="" disabled selected>-Select Strategy-</option>
-                            <option value="VWAP">VWAP</option>
-                            <option value="TWAP">TWAP</option>
-                            <option value="DMA">DMA</option>
-                            <option value="SOR">SOR</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Expiry</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control" id="expiry_val">
-                            <option value="" disabled selected>--Select Expiry--</option>
-                            <option value="Immediate or Cancel">Immediate or Cancel</option>
-                            <option value="TWAP">Fill or Kill</option>
-                            <option value="Day">Day</option>
-                            <option value="Custom">Custom</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-
-                    <div class="form-group" style="display:none" id="start_time">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Start Time</label>
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control" placeholder="Start time">
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group" style="display:none" id="end_time">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>End Time</label>
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control" placeholder="End time">
-                        </div>
-                      </span>
-                    </div><br><br><br>
+            <div class="panel-heading"><b>Orders</b></div>
+              <div class="panel-body">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <div class="col-md-3">
+                    <p style="font-size:15px;"><b>Active Orders:</b></p>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-3 text-right">
+                      <button class="btn btn-primary" onclick="cancel_all_orders()">Cancel all orders</button>
+                    </div>
+                    <div class="col-md-2">
+                      <label class="checkbox-inline">
+                        <input type="checkbox" value=""><b>Suspend all orders</b>
+                      </label>
+                    </div>
                   </div>
+                </form>
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="table1">
+                    <thead>
+                      <tr>
+                          <th>Time</th>
+                          <th>OrderID</th>
+                          <th>Symbol</th>
+                          <th>Side</th>
+                          <th>Quantity</th>
+                          <th>Type</th>
+                          <th>Limit Price</th>
+                          <th>Completed Qty</th>
+                          <th>Remaining Qty</th>
+                          <th>Avg Price</th>
+                          <th>Order Status</th>
+                          <th>Start Time</th>
+                          <th>End Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr onclick="show_btn1()" id="tr1">
+                        <td style="overflow:visible">2018-07-04 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b1" id="menu1" data-toggle="dropdown"></span>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li><a href="#" onclick="fill_details()">Fill Details</a></li>
+                            <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
+                            <li><a href="#" onclick="suspend()">Suspend</a></li>
+                          </ul>
+                        </div></td>
+                        <td>10001</td>
+                        <td>ETH/USD</td>
+                        <td>Buy</td>
+                        <td>5</td>
+                        <td>Limit</td>
+                        <td>205.50</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>205.49</td>
+                        <td>Filled</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr onclick="show_btn2()" id="tr2">
+                        <td style="overflow:visible">2018-07-04 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b2" id="menu2" data-toggle="dropdown"></span>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+                            <li><a href="#" onclick="fill_details()">Fill Details</a></li>
+                            <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
+                            <li><a href="#" onclick="suspend()">Suspend</a></li>
+                          </ul>
+                        </div></td>
+                        <td>10002</td>
+                        <td>BTC/USD</td>
+                        <td>Sell</td>
+                        <td>0.5</td>
+                        <td>Market</td>
+                        <td>0.0</td>
+                        <td>0.4</td>
+                        <td>0.1</td>
+                        <td>6645.32</td>
+                        <td>Partially Filled</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr onclick="show_btn3()" id="tr3">
+                        <td style="overflow:visible">2018-07-04 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b3" id="menu3" data-toggle="dropdown"></span>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="menu3">
+                            <li><a href="#" onclick="fill_details()">Fill Details</a></li>
+                            <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
+                            <li><a href="#" onclick="suspend()">Suspend</a></li>
+                          </ul>
+                        </div></td>
+                        <td>10003</td>
+                        <td>LTC/USD</td>
+                        <td>Buy</td>
+                        <td>25</td>
+                        <td>Limit</td>
+                        <td>53.52</td>
+                        <td>0</td>
+                        <td>25</td>
+                        <td>0.0</td>
+                        <td>New</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr onclick="show_btn4()" id="tr4">
+                        <td style="overflow:visible">2018-07-04 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b4" id="menu4" data-toggle="dropdown"></span>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="menu4">
+                            <li><a href="#" onclick="fill_details()">Fill Details</a></li>
+                            <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
+                            <li><a href="#" onclick="suspend()">Suspend</a></li>
+                          </ul>
+                        </div></td>
+                        <td>10004</td>
+                        <td>LTC/USD</td>
+                        <td>Buy</td>
+                        <td>25</td>
+                        <td>Limit</td>
+                        <td>53.52</td>
+                        <td>0</td>
+                        <td>25</td>
+                        <td>0.0</td>
+                        <td>New</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr onclick="show_btn5()" id="tr5">
+                        <td style="overflow:visible">2018-07-30 04:20:1<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b5" id="menu5" data-toggle="dropdown"></span>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="menu5">
+                            <li><a href="#" onclick="fill_details()">Fill Details</a></li>
+                            <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
+                            <li><a href="#" onclick="suspend()">Suspend</a></li>
+                          </ul>
+                        </div></td>
+                        <td>10005</td>
+                        <td>BTC/USD</td>
+                        <td>Buy</td>
+                        <td>0.005</td>
+                        <td>Market</td>
+                        <td>1000</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>0.0</td>
+                        <td>New</td>
+                        <td>04:20:133</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr onclick="show_btn6()" id="tr6">
+                        <td style="overflow:visible">2018-07-29 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b6" id="menu6" data-toggle="dropdown"></span>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="menu6">
+                            <li><a href="#" onclick="fill_details()">Fill Details</a></li>
+                            <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
+                            <li><a href="#" onclick="suspend()">Suspend</a></li>
+                          </ul>
+                        </div></td>
+                        <td>10006</td>
+                        <td>ETH/USDT</td>
+                        <td>Sell</td>
+                        <td>0.005</td>
+                        <td>Limit</td>
+                        <td>4000</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>Filled</td>
+                        <td>04:20:133</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr onclick="show_btn7()" id="tr7" style="overflow:visible">
+                        <td style="overflow:visible">2018-07-30 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b7" id="menu7" data-toggle="dropdown"></span>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="menu7">
+                            <li><a href="#" onclick="fill_details()">Fill Details</a></li>
+                            <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
+                            <li><a href="#" onclick="suspend()">Suspend</a></li>
+                          </ul>
+                        </div></td>
+                        <td>10007</td>
+                        <td>BTC/USD</td>
+                        <td>Buy</td>
+                        <td>0.005</td>
+                        <td>Market</td>
+                        <td>1000</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>10.80</td>
+                        <td>Filled</td>
+                        <td>04:20:133</td>
+                        <td>08:25:13</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div><br>
 
-
+                <p style="font-size:15px;"><b>Completed Orders:</b></p>
+                <div style="table-responsive"></div>
+                  <table class="table table-bordered" id="table2">
+                    <thead>
+                      <tr>
+                          <th>Time</th>
+                          <th>OrderID</th>
+                          <th>Symbol</th>
+                          <th>Side</th>
+                          <th>Quantity</th>
+                          <th>Type</th>
+                          <th>Limit Price</th>
+                          <th>Completed Qty</th>
+                          <th>Remaining Qty</th>
+                          <th>Avg Price</th>
+                          <th>Order Status</th>
+                          <th>Start Time</th>
+                          <th>End Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2018-07-04 11:20:13</td>
+                        <td>10001</td>
+                        <td>ETH/USD</td>
+                        <td>Buy</td>
+                        <td>0.005</td>
+                        <td>Market</td>
+                        <td>1000</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>205.49</td>
+                        <td>Filled</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr>
+                        <td>2018-07-29 04:20:13</td>
+                        <td>10002</td>
+                        <td>ETH/USDT</td>
+                        <td>Sell</td>
+                        <td>0.005</td>
+                        <td>Limit</td>
+                        <td>4000</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>6645.32</td>
+                        <td>Partially Filled</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr>
+                        <td>2018-07-30 10:20:13</td>
+                        <td>10003</td>
+                        <td>BTC/USD</td>
+                        <td>Buy</td>
+                        <td>0.005</td>
+                        <td>Market</td>
+                        <td>1000</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>1000.32</td>
+                        <td>New</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr>
+                        <td>2018-07-29 04:20:13</td>
+                        <td>10004</td>
+                        <td>ETH/USDT</td>
+                        <td>Sell</td>
+                        <td>0.005</td>
+                        <td>Limit</td>
+                        <td>4000</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>2045.32</td>
+                        <td>New</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr>
+                        <td>2018-07-30 12:20:13</td>
+                        <td>10005</td>
+                        <td>BTC/USD</td>
+                        <td>Buy</td>
+                        <td>0.005</td>
+                        <td>Market</td>
+                        <td>1000</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>645.32</td>
+                        <td>New</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr>
+                        <td>2018-07-29 03:20:13</td>
+                        <td>10006</td>
+                        <td>ETH/USDT</td>
+                        <td>Sell</td>
+                        <td>0.005</td>
+                        <td>Limit</td>
+                        <td>4000</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>4645.32</td>
+                        <td>Filled</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                      <tr>
+                        <td>2018-07-30 09:20:13</td>
+                        <td>10007</td>
+                        <td>BTC/USD</td>
+                        <td>Buy</td>
+                        <td>0.005</td>
+                        <td>Market</td>
+                        <td>1000</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>8645.32</td>
+                        <td>Filled</td>
+                        <td>04:20:13</td>
+                        <td>08:25:13</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div id="sell" class="tab-pane fade">
-                  <br>
-                  <div class="col-md-12 sell_label">
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Asset</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control">
-                            <option value="" disabled selected>--Select Asset--</option>
-                            <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
-                            <option value="Litcoin (LTC)">Litcoin (LTC)</option>
-                            <option value="Ethereum (ETH)">Ethereum (ETH)</option>
-                            <option value="Zcash (ZEC)">Zcash (ZEC)</option>
-                            <option value="Dash (DASH)">Dash (DASH)</option>
-                            <option value="Ripple (XRP)"> Ripple (XRP)</option>
-                            <option value="Monero (XMR)">Monero (XMR)</option>
-                            <option value="Bitcoin Cash (BCH)">Bitcoin Cash (BCH)</option>
-                            <option value="Cardano (ADA)">Cardano (ADA)</option>
-                            <option value="Maker (MKR)">Maker (MKR)</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Quote Currency</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control">
-                            <option value="" disabled selected>--Select QC--</option>
-                            <option value="VWAP">BTC</option>
-                            <option value="TWAP">USD</option>
-                            <option value="DMA">EUR</option>
-                            <option value="KRW">KRW</option>
-                            <option value="JPY">JPY</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Quantity</label>
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control" placeholder="Enter quantity">
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Type</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control" id="buy_select_type">
-                            <option value="" disabled selected>--Select Type--</option>
-                            <option value="Market">Market</option>
-                            <option value="Limit">Limit</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label style="margin-top:25px">Price</label>
-                        </div>
-                        <div class="col-md-6">
-                          <a href="#" data-toggle="popover2" title="Consolidated Market Data " data-content="Consolidated Bid for the Crypto will be displayed here">Highest Bid : 6632</a>
-                          <input type="text" id="price" class="form-control" value="0.005" disabled>
-                        </div>
-                      </span>
-                    </div><br><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Strategy</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control">
-                            <option value="" disabled selected>-Select Strategy-</option>
-                            <option value="VWAP">VWAP</option>
-                            <option value="TWAP">TWAP</option>
-                            <option value="DMA">DMA</option>
-                            <option value="SOR">SOR</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Expiry</label>
-                        </div>
-                        <div class="col-md-6">
-                          <select class="form-control" id="sell_expiry_val">
-                            <option value="" disabled selected>--Select Expiry--</option>
-                            <option value="Immediate or Cancel">Immediate or Cancel</option>
-                            <option value="TWAP">Fill or Kill</option>
-                            <option value="Day">Day</option>
-                            <option value="Custom">Custom</option>
-                          </select>
-                        </div>
-                      </span>
-                    </div><br><br>
-
-                    <div class="form-group" style="display:none" id="sell_start_time">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>Start Time</label>
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control" placeholder="Start time">
-                        </div>
-                      </span>
-                    </div><br><br>
-                    <div class="form-group" style="display:none" id="sell_end_time">
-                      <span style="white-space: nowrap">
-                        <div class="col-md-6">
-                          <label>End Time</label>
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control" placeholder="End time">
-                        </div>
-                      </span>
-                    </div><br><br><br>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12" style="margin-left:98px">
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="" style="margin-left:-28px"><b>Allow Principal Execution</b>
-                </label><br><br>
-              </div>
-              <div class="col-sm-12">
-                <div class="col-sm-6">
-                  <button class="btn btn-primary submit" onclick="buy_submit()">Submit</button>
-                </div>
-                <div class="col-sm-6">
-                  <button class="btn btn-primary reset" onclick="buy_reset()">Reset</button>
-                </div>
-              </div>
-            </div>
-          </div>"
-      </div>
-      <div class="col-md-9">
-        <div class="panel panel-primary">
-          <div class="panel-heading"><b>Orders</b></div>
-            <div class="panel-body">
-              <form class="form-horizontal">
-                <div class="form-group">
-                  <div class="col-md-3">
-                  <p style="font-size:15px;"><b>Active Orders:</b></p>
-                  </div>
-                  <div class="col-md-4"></div>
-                  <div class="col-md-3 text-right">
-                    <button class="btn btn-primary" onclick="cancel_all_orders()">Cancel all orders</button>
-                  </div>
-                  <div class="col-md-2">
-                    <label class="checkbox-inline">
-                      <input type="checkbox" value=""><b>Suspend all orders</b>
-                    </label>
-                  </div>
-                </div>
-              </form>
-              <div class="table-responsive">
-                <table class="table table-bordered" id="table1">
-                  <thead>
-                    <tr>
-                        <th>Time</th>
-			            <th>OrderID</th>
-                        <th>Symbol</th>
-                        <th>Side</th>
-                        <th>Quantity</th>
-                        <th>Type</th>
-                        <th>Limit Price</th>
-                        <th>Completed Qty</th>
-                        <th>Remaining Qty</th>
-			            <th>Avg Price</th>
-                        <th>Order Status</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr onclick="show_btn1()" id="tr1">
-                      <td style="overflow:visible">2018-07-04 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b1" id="menu1" data-toggle="dropdown"></span>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                          <li><a href="#" onclick="fill_details()">Fill Details</a></li>
-                          <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
-                          <li><a href="#" onclick="suspend()">Suspend</a></li>
-                        </ul>
-                      </div></td>
-		              <td>10001</td>
-                      <td>ETH/USD</td>
-                      <td>Buy</td>
-                      <td>5</td>
-                      <td>Limit</td>
-                      <td>205.50</td>
-                      <td>5</td>
-                      <td>5</td>
-		              <td>205.49</td>
-                      <td>Filled</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr onclick="show_btn2()" id="tr2">
-                      <td style="overflow:visible">2018-07-04 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b2" id="menu2" data-toggle="dropdown"></span>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
-                          <li><a href="#" onclick="fill_details()">Fill Details</a></li>
-                          <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
-                          <li><a href="#" onclick="suspend()">Suspend</a></li>
-                        </ul>
-                      </div></td>
-		              <td>10002</td>
-                      <td>BTC/USD</td>
-                      <td>Sell</td>
-                      <td>0.5</td>
-                      <td>Market</td>
-                      <td>0.0</td>
-                      <td>0.4</td>
-                      <td>0.1</td>
-		              <td>6645.32</td>
-                      <td>Partially Filled</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr onclick="show_btn3()" id="tr3">
-                      <td style="overflow:visible">2018-07-04 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b3" id="menu3" data-toggle="dropdown"></span>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu3">
-                          <li><a href="#" onclick="fill_details()">Fill Details</a></li>
-                          <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
-                          <li><a href="#" onclick="suspend()">Suspend</a></li>
-                        </ul>
-                      </div></td>
-		              <td>10003</td>
-                      <td>LTC/USD</td>
-                      <td>Buy</td>
-                      <td>25</td>
-                      <td>Limit</td>
-                      <td>53.52</td>
-                      <td>0</td>
-                      <td>25</td>
-		              <td>0.0</td>
-                      <td>New</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-		            <tr onclick="show_btn4()" id="tr4">
-                      <td style="overflow:visible">2018-07-04 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b4" id="menu4" data-toggle="dropdown"></span>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu4">
-                          <li><a href="#" onclick="fill_details()">Fill Details</a></li>
-                          <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
-                          <li><a href="#" onclick="suspend()">Suspend</a></li>
-                        </ul>
-                      </div></td>
-                      <td>10004</td>
-                      <td>LTC/USD</td>
-                      <td>Buy</td>
-                      <td>25</td>
-                      <td>Limit</td>
-                      <td>53.52</td>
-                      <td>0</td>
-                      <td>25</td>
-		              <td>0.0</td>
-                      <td>New</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr onclick="show_btn5()" id="tr5">
-                      <td style="overflow:visible">2018-07-30 04:20:1<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b5" id="menu5" data-toggle="dropdown"></span>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu5">
-                          <li><a href="#" onclick="fill_details()">Fill Details</a></li>
-                          <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
-                          <li><a href="#" onclick="suspend()">Suspend</a></li>
-                        </ul>
-                      </div></td>
-                      <td>10005</td>
-                      <td>BTC/USD</td>
-                      <td>Buy</td>
-                      <td>0.005</td>
-                      <td>Market</td>
-                      <td>1000</td>
-                      <td>2</td>
-                      <td>5</td>
-                      <td>0.0</td>
-                      <td>New</td>
-                      <td>04:20:133</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr onclick="show_btn6()" id="tr6">
-                      <td style="overflow:visible">2018-07-29 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b6" id="menu6" data-toggle="dropdown"></span>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu6">
-                          <li><a href="#" onclick="fill_details()">Fill Details</a></li>
-                          <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
-                          <li><a href="#" onclick="suspend()">Suspend</a></li>
-                        </ul>
-                      </div></td>
-                      <td>10006</td>
-                      <td>ETH/USDT</td>
-                      <td>Sell</td>
-                      <td>0.005</td>
-                      <td>Limit</td>
-                      <td>4000</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>3.5</td>
-                      <td>Filled</td>
-                      <td>04:20:133</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr onclick="show_btn7()" id="tr7" style="overflow:visible">
-                      <td style="overflow:visible">2018-07-30 04:20:13<div class="dropdown"><span class="glyphicon glyphicon-option-vertical b7" id="menu7" data-toggle="dropdown"></span>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu7">
-                          <li><a href="#" onclick="fill_details()">Fill Details</a></li>
-                          <li><a href="#" onclick="cancel_order()">Cancel Order</a></li>
-                          <li><a href="#" onclick="suspend()">Suspend</a></li>
-                        </ul>
-                      </div></td>
-                      <td>10007</td>
-                      <td>BTC/USD</td>
-                      <td>Buy</td>
-                      <td>0.005</td>
-                      <td>Market</td>
-                      <td>1000</td>
-                      <td>2</td>
-                      <td>5</td>
-                      <td>10.80</td>
-                      <td>Filled</td>
-                      <td>04:20:133</td>
-                      <td>08:25:13</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div><br>
-
-              <p style="font-size:15px;"><b>Completed Orders:</b></p>
-              <div style="table-responsive"></div>
-                <table class="table table-bordered" id="table2">
-                  <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>OrderID</th>
-                        <th>Symbol</th>
-                        <th>Side</th>
-                        <th>Quantity</th>
-                        <th>Type</th>
-                        <th>Limit Price</th>
-                        <th>Completed Qty</th>
-                        <th>Remaining Qty</th>
-                        <th>Avg Price</th>
-                        <th>Order Status</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>2018-07-04 11:20:13</td>
-                      <td>10001</td>
-                      <td>ETH/USD</td>
-                      <td>Buy</td>
-                      <td>0.005</td>
-                      <td>Market</td>
-                      <td>1000</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>205.49</td>
-                      <td>Filled</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr>
-                      <td>2018-07-29 04:20:13</td>
-                      <td>10002</td>
-                      <td>ETH/USDT</td>
-                      <td>Sell</td>
-                      <td>0.005</td>
-                      <td>Limit</td>
-                      <td>4000</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>6645.32</td>
-                      <td>Partially Filled</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr>
-                      <td>2018-07-30 10:20:13</td>
-                      <td>10003</td>
-                      <td>BTC/USD</td>
-                      <td>Buy</td>
-                      <td>0.005</td>
-                      <td>Market</td>
-                      <td>1000</td>
-                      <td>2</td>
-                      <td>5</td>
-                      <td>1000.32</td>
-                      <td>New</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr>
-                      <td>2018-07-29 04:20:13</td>
-                      <td>10004</td>
-                      <td>ETH/USDT</td>
-                      <td>Sell</td>
-                      <td>0.005</td>
-                      <td>Limit</td>
-                      <td>4000</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>2045.32</td>
-                      <td>New</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr>
-                      <td>2018-07-30 12:20:13</td>
-                      <td>10005</td>
-                      <td>BTC/USD</td>
-                      <td>Buy</td>
-                      <td>0.005</td>
-                      <td>Market</td>
-                      <td>1000</td>
-                      <td>2</td>
-                      <td>5</td>
-                      <td>645.32</td>
-                      <td>New</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr>
-                      <td>2018-07-29 03:20:13</td>
-                      <td>10006</td>
-                      <td>ETH/USDT</td>
-                      <td>Sell</td>
-                      <td>0.005</td>
-                      <td>Limit</td>
-                      <td>4000</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>4645.32</td>
-                      <td>Filled</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                    <tr>
-                      <td>2018-07-30 09:20:13</td>
-                      <td>10007</td>
-                      <td>BTC/USD</td>
-                      <td>Buy</td>
-                      <td>0.005</td>
-                      <td>Market</td>
-                      <td>1000</td>
-                      <td>2</td>
-                      <td>5</td>
-                      <td>8645.32</td>
-                      <td>Filled</td>
-                      <td>04:20:13</td>
-                      <td>08:25:13</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </div>
-          </div>
-      </div>
+        </div>
     </div>
     <!-- /.container -->
 
